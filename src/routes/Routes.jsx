@@ -3,6 +3,8 @@ import RootLayout from "../layouts/RootLayout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import LoadingSpinner from "../components/Shared/LoadingSpinner";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
 
 export const router = createBrowserRouter([
   {
@@ -11,10 +13,9 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     hydrateFallbackElement: <LoadingSpinner />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
+      { index: true, Component: Home },
+      { path: "/login", element: <Login /> },
+      { path: "/signup", element: <SignUp /> },
     ],
   },
 ]);

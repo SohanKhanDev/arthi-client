@@ -28,5 +28,5 @@
 
 /** ---* btn primary *--- **/
 .btn-primary {
-  @apply bg-primary text-base-100 rounded-4xl;
+  @apply bg-primary/80 text-white rounded-full px-6 py-2.5 font-medium hover:bg-primary/10 hover:text-black transition-all duration-300;
 }

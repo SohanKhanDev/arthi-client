@@ -1,10 +1,12 @@
 import React from "react";
-// FIX: Correct import from react-router-dom
 import { NavLink } from "react-router";
 import logo from "../../assets/arthi-logo.png";
 import Switch from "./Switch";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+  console.log(user);
   const links = [
     { id: 1, title: "Home", path: "/" },
     { id: 2, title: "All Loans", path: "/all-loans" },
@@ -12,11 +14,11 @@ const Navbar = () => {
     { id: 4, title: "Contact", path: "/contact" },
   ];
 
-  // Function to determine link class based on active status
+  //LINK - active nav link
   const getNavLinkClass = ({ isActive }) =>
     isActive
-      ? "text-primary font-bold border-b-2 border-primary pb-1"
-      : "hover:text-primary transition-all";
+      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full shadow-sm"
+      : "text-gray-600 hover:text-primary hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300";
 
   return (
     <div className="bg-base-100 shadow-lg sticky top-0 z-50">
@@ -67,28 +69,51 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               ))}
+              {user ? (
+                <li>
+                  <NavLink
+                    className="text-gray-600 hover:text-primary hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300"
+                    onClick={() => logOut()}
+                  >
+                    Logout
+                  </NavLink>
+                </li>
+              ) : (
+                <div>
+                  <li>
+                    <NavLink to="/login" className={getNavLinkClass}>
+                      Login
+                    </NavLink>
+                  </li>
 
-              <li>
-                <NavLink to="/login" className={getNavLinkClass}>
-                  Login
-                </NavLink>
-              </li>
-
-              <li>
-                <NavLink to="/register" className={getNavLinkClass}>
-                  Register
-                </NavLink>
-              </li>
+                  <li>
+                    <NavLink to="/signup" className={getNavLinkClass}>
+                      Register
+                    </NavLink>
+                  </li>
+                </div>
+              )}
             </ul>
           </div>
 
-          <NavLink to="/login" className="btn btn-primary hidden lg:flex">
-            Login
-          </NavLink>
+          {user ? (
+            <NavLink
+              onClick={() => logOut()}
+              className="btn btn-primary hidden lg:flex"
+            >
+              Logout
+            </NavLink>
+          ) : (
+            <div className=" flex gap-2">
+              <NavLink to="/login" className="btn btn-primary hidden lg:flex">
+                Login
+              </NavLink>
 
-          <NavLink to="/register" className="btn btn-primary hidden lg:flex">
-            Register
-          </NavLink>
+              <NavLink className="btn btn-primary hidden lg:flex">
+                Register
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
     </div>
