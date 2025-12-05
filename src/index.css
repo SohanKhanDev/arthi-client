@@ -25,3 +25,8 @@
   --color-secondary: #003350;
 
 }
+
+/** ---* btn primary *--- **/
+.btn-primary {
+  @apply bg-primary text-base-100 rounded-4xl;
+}
