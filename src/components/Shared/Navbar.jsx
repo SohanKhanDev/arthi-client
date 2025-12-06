@@ -1,12 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import logo from "../../assets/arthi-logo.png";
+import defaultProfilePhoto from "../../assets/profilePhoto.jpg";
 import Switch from "./Switch";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   console.log(user);
+
   const publicLinks = [
     { id: 1, title: "Home", path: "/" },
     { id: 2, title: "All Loans", path: "/all-loans" },
@@ -46,7 +48,20 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="flex-1 navbar-end flex justify-end gap-2">
+        <div className="flex-1 navbar-end flex justify-end gap-3">
+          {user && (
+            <Link
+              to={`/user-profile/${user.email}`}
+              className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden"
+            >
+              <img
+                src={user?.photoURL || defaultProfilePhoto}
+                alt="User avatar"
+                className="object-cover h-full w-full"
+              />
+            </Link>
+          )}
+
           <Switch></Switch>
           <div className="dropdown dropdown-end lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost">
