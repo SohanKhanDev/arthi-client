@@ -7,12 +7,20 @@ import useAuth from "../../hooks/useAuth";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   console.log(user);
-  const links = [
+  const publicLinks = [
     { id: 1, title: "Home", path: "/" },
     { id: 2, title: "All Loans", path: "/all-loans" },
     { id: 3, title: "About Us", path: "/about-us" },
     { id: 4, title: "Contact", path: "/contact" },
   ];
+
+  const privateLinks = [
+    { id: 1, title: "Home", path: "/" },
+    { id: 2, title: "All Loans", path: "/all-loans" },
+    { id: 5, title: "Dashboard", path: "/dashboard" },
+  ];
+
+  const navLinks = user ? privateLinks : publicLinks;
 
   //LINK - active nav link
   const getNavLinkClass = ({ isActive }) =>
@@ -24,11 +32,11 @@ const Navbar = () => {
     <div className="bg-base-100 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 md:px-0 flex items-center h-20">
         <div className="flex-1 navbar-start">
-          <img src={logo} alt="Logo" className="w-[130px]" />
+          <img src={logo} alt="Logo" className="w-[170px]" />
         </div>
         <div className="flex-1 navbar-center hidden lg:flex justify-center">
           <ul className="menu menu-horizontal gap-6">
-            {links.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.id}>
                 <NavLink to={link.path} className={getNavLinkClass}>
                   {link.title}
@@ -62,13 +70,14 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-50"
             >
-              {links.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.id}>
                   <NavLink to={link.path} className={getNavLinkClass}>
                     {link.title}
                   </NavLink>
                 </li>
               ))}
+
               {user ? (
                 <li>
                   <NavLink
@@ -109,7 +118,7 @@ const Navbar = () => {
                 Login
               </NavLink>
 
-              <NavLink className="btn btn-primary hidden lg:flex">
+              <NavLink to="/signup" className="btn btn-primary hidden lg:flex">
                 Register
               </NavLink>
             </div>
