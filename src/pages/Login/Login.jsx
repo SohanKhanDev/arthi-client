@@ -8,12 +8,15 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { ImSpinner9 } from "react-icons/im";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { saveOrUpdateUser } from "../../utils";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const { googleSignIn, emailSignin, setLoading, loading } = useAuth();
+  const { emailSignin, googleSignIn, logOut, setLoading, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
   const from = location.state || "/";
 
   const {
@@ -22,17 +25,33 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const checkUserStatus = async (email) => {
+    try {
+      const response = await axiosSecure.get(`/users/${email}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error checking user status:", error);
+      return null;
+    }
+  };
+
   const handleEmailSignin = async (data) => {
     setLoading(true);
     const { email, password } = data;
-    console.log({ email, password });
 
     try {
-      const { user } = await emailSignin(email, password);
-      navigate(from, { replace: true });
-      toast.success(
-        `Welcome back, ${user.displayName || user.email || "user"}!`
-      );
+      const userStatus = await checkUserStatus(email);
+      console.log(userStatus);
+      if (userStatus?.status !== "approved") {
+        navigate("/signup-pending");
+      } else {
+        axiosSecure.patch(`/users/login-update/${userStatus?._id}`);
+        const { user } = await emailSignin(email, password);
+        navigate(from, { replace: true });
+        toast.success(
+          `Welcome back, ${user.displayName || user.email || "user"}!`
+        );
+      }
     } catch (error) {
       const errorMessage =
         error.message || "An unknown sign-in error occurred.";
@@ -46,10 +65,23 @@ const Login = () => {
     setLoading(true);
     try {
       const { user } = await googleSignIn();
-      navigate(from, { replace: true });
-      toast.success(
-        `Welcome back, ${user.displayName || user.email || "user"}!`
-      );
+      console.log(user?.displayName);
+      await saveOrUpdateUser({
+        name: user?.displayName,
+        image: user?.photoURL,
+        email: user?.email,
+        role: "borrower",
+      });
+
+      const userStatus = await checkUserStatus(user?.email);
+      if (userStatus?.status !== "approved") {
+        await logOut();
+        navigate("/signup-pending");
+      } else {
+        axiosSecure.patch(`/users/login-update/${userStatus?._id}`);
+        navigate(from, { replace: true });
+        toast.success(`Welcome, ${user.displayName || user.email || "user"}!`);
+      }
     } catch (error) {
       const errorMessage =
         error.message || "An unknown sign-in error occurred.";

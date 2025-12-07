@@ -35,3 +35,8 @@
 .btn-secondary {
   @apply bg-linear-to-r from-gray-100 to-gray-200 text-black rounded-full px-6 py-2.5 font-medium hover:bg-gray-500 hover:text-black transition-all duration-300;
 }
+
+/** ---* table header *--- **/
+.tbl-header {
+  @apply px-6 py-4 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider;
+}

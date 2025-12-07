@@ -15,6 +15,7 @@ import Profile from "../components/Dashboard/Pages/Profile";
 import ManageUser from "../components/Dashboard/Pages/ManageUser";
 import AllLoanManage from "../components/Dashboard/Pages/AllLoanManage";
 import LoanApplications from "../components/Dashboard/Pages/LoanApplications";
+import SignupPending from "../pages/SignUp/SignupPending";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,8 @@ export const router = createBrowserRouter([
 
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <SignUp /> },
+      { path: "/signup-pending", element: <SignupPending /> },
+
       { path: "/user-profile/:email", element: <UserProfile /> },
       { path: "/edit-profile", element: <EditProfile /> },
     ],
