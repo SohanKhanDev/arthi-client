@@ -12,6 +12,9 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Contact from "../pages/Contact/Contact";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../components/Dashboard/Pages/Profile";
+import ManageUser from "../components/Dashboard/Pages/ManageUser";
+import AllLoanManage from "../components/Dashboard/Pages/AllLoanManage";
+import LoanApplications from "../components/Dashboard/Pages/LoanApplications";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +41,12 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     errorElement: <ErrorPage />,
     hydrateFallbackElement: <LoadingSpinner />,
-    children: [{ path: "/dashboard/user-profile", element: <Profile /> }],
+    children: [
+      { path: "/dashboard/user-profile", element: <Profile /> },
+
+      { path: "/dashboard/manage-users", element: <ManageUser /> },
+      { path: "/dashboard/all-loan", element: <AllLoanManage /> },
+      { path: "/dashboard/loan-applications", element: <LoanApplications /> },
+    ],
   },
 ]);

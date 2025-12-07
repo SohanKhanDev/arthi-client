@@ -4,20 +4,25 @@ import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
 const useDBUser = () => {
-  const { user, loading } = useAuth();
-
+  const { user, loading: authLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const { data: dbUser, isLoading: isRoleLoading } = useQuery({
+  const {
+    data: dbUser,
+    isLoading: queryLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ["dbUser", user?.email],
-    enabled: !loading && !!user?.email,
+    enabled: !authLoading && !!user?.email,
     queryFn: async () => {
       const { data } = await axiosSecure(`/db-user`);
       return data;
     },
   });
 
-  return { dbUser, isRoleLoading };
+  const isLoading = authLoading || queryLoading || isFetching;
+
+  return { dbUser, isLoading };
 };
 
 export default useDBUser;
