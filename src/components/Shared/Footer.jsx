@@ -13,7 +13,7 @@ import { FaXTwitter } from "react-icons/fa6";
 /*** ----------*** :: NAVLINKS :: ***---------- ***/
 const footerLinks = [
   { title: "Home", path: "/" },
-  { title: "All Loan", path: "/allcrops" },
+  { title: "All Loans", path: "/all-loans" },
   { title: "My Posts", path: "/myposts" },
   { title: "Profile", path: "/profile" },
 ];
