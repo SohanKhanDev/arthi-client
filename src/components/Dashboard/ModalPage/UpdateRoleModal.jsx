@@ -132,6 +132,7 @@ const UpdateRoleModal = ({ isOpen, closeModal, refetch, user }) => {
                 className="flex-1 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
                 onClick={closeModal}
               />
+
               <MyBtn
                 label="Update Role"
                 variant="primary"

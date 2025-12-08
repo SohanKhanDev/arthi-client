@@ -19,7 +19,6 @@ const Profile = () => {
       </div>
     );
   }
-  console.log(isLoading);
 
   const createdAT = dbUser?.createdAt
     ? new Date(dbUser?.createdAt).toLocaleString("en-US", {

@@ -15,10 +15,21 @@ import AdminMenu from "./Menu/AdminMenu";
 import BorrowerMenu from "./Menu/BorrowerMenu";
 import ManagerMenu from "./Menu/ManagerMenu";
 import DashboardNavLink from "../../Shared/DashboardNavLink";
+import useDBUser from "../../../hooks/usedbUser";
+import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
   const { logOut, user } = useAuth();
   const [isActive, setActive] = useState(false);
+  const { dbUser, isLoading } = useDBUser();
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-50 bg-linear-to-br from-slate-50 to-emerald-50 flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   const handleToggle = () => {
     setActive(!isActive);
@@ -77,9 +88,11 @@ const Sidebar = () => {
           <nav className="flex-1 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800 ">
             {/* Role-Based Menus */}
             <div className=" space-y-1">
-              <AdminMenu />
-              <BorrowerMenu />
-              <ManagerMenu />
+              {dbUser?.role === "admin" && <AdminMenu />}
+
+              {dbUser?.role === "borrower" && <BorrowerMenu />}
+
+              {dbUser?.role === "manager" && <ManagerMenu />}
             </div>
           </nav>
 

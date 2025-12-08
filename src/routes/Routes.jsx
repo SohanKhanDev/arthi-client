@@ -16,6 +16,11 @@ import ManageUser from "../components/Dashboard/Pages/ManageUser";
 import AllLoanManage from "../components/Dashboard/Pages/AllLoanManage";
 import LoanApplications from "../components/Dashboard/Pages/LoanApplications";
 import SignupPending from "../pages/SignUp/SignupPending";
+import AddLoan from "../components/Dashboard/Pages/Loans/AddLoan";
+import ManageLoans from "../components/Dashboard/Pages/Loans/ManageLoans";
+import PendingApplications from "../components/Dashboard/Pages/Loans/PendingApplications";
+import ApprovedApplications from "../components/Dashboard/Pages/Loans/ApprovedApplications";
+import MyLoans from "../components/Dashboard/Pages/Loans/MyLoans";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +55,13 @@ export const router = createBrowserRouter([
       { path: "/dashboard/manage-users", element: <ManageUser /> },
       { path: "/dashboard/all-loan", element: <AllLoanManage /> },
       { path: "/dashboard/loan-applications", element: <LoanApplications /> },
+
+      { path: "/dashboard/add-loan", element: <AddLoan /> },
+      { path: "/dashboard/manage-loans", element: <ManageLoans /> },
+      { path: "/dashboard/pending-loans", element: <PendingApplications /> },
+      { path: "/dashboard/approved-loans", element: <ApprovedApplications /> },
+
+      { path: "/dashboard/my-loans", element: <MyLoans /> },
     ],
   },
 ]);
