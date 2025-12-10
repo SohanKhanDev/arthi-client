@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
       { path: "/dashboard/pending-loans", element: <PendingApplications /> },
       { path: "/dashboard/approved-loans", element: <ApprovedApplications /> },
 
-      { path: "/dashboard/my-loans", element: <MyLoans /> },
+      { path: "/dashboard/my-loans/:email", element: <MyLoans /> },
     ],
   },
 ]);

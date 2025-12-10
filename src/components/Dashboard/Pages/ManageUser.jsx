@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
-
 import UpdateRoleModal from "../ModalPage/UpdateRoleModal";
 import SuspendUserModal from "../ModalPage/SuspendUserModal";
 import UserDataRow from "../TableRow/UserDataRow";
