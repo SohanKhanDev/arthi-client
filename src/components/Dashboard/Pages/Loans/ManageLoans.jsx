@@ -13,6 +13,7 @@ const ManageLoans = () => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedLoan, setSelectedLoan] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const {
     data: loans = [],
@@ -27,6 +28,13 @@ const ManageLoans = () => {
     },
     enabled: !!user,
   });
+
+  const filteredLoans = loans.filter(
+    (loan) =>
+      !searchTerm.trim() ||
+      loan.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      loan.category?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (isLoading || isFetching || authLoading) {
     return (
@@ -48,6 +56,24 @@ const ManageLoans = () => {
           </p>
         </div>
 
+        {/* Search Input */}
+        <div className="mb-6">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search by title or category..."
+              className="w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-400 min-w-[300px]"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          {searchTerm && (
+            <p className="text-sm text-slate-500 mt-1">
+              Showing {filteredLoans.length} of {loans.length} loans
+            </p>
+          )}
+        </div>
+
         <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -63,7 +89,7 @@ const ManageLoans = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {loans.map((loan) => (
+                {filteredLoans.map((loan) => (
                   <LoansDataRow
                     key={loan?._id}
                     loan={loan}
@@ -82,7 +108,7 @@ const ManageLoans = () => {
             </table>
           </div>
 
-          {loans.length === 0 && (
+          {filteredLoans.length === 0 && (
             <div className="text-center py-12">
               <div className="w-24 h-24 mx-auto mb-4 bg-slate-100 rounded-2xl flex items-center justify-center">
                 <svg
@@ -100,15 +126,18 @@ const ManageLoans = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                No loans found
+                {searchTerm ? "No matching loans found" : "No loans found"}
               </h3>
               <p className="text-slate-500 mb-6">
-                No loans to manage at the moment.
+                {searchTerm
+                  ? `No loans match "${searchTerm}". Try different keywords.`
+                  : "No loans to manage at the moment."}
               </p>
             </div>
           )}
         </div>
       </div>
+
       <EditLoanModal
         isOpen={isEditOpen}
         closeModal={() => setIsEditOpen(false)}
