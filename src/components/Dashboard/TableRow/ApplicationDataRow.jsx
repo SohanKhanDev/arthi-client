@@ -4,7 +4,12 @@ import { FaEye } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import { LuBadgeDollarSign } from "react-icons/lu";
 
-const ApplicationDataRow = ({ application, onOpenView, onOpenCancel }) => {
+const ApplicationDataRow = ({
+  application,
+  onOpenView,
+  onOpenCancel,
+  onOpenPay,
+}) => {
   return (
     <tr className="hover:bg-slate-50/50 transition-colors group">
       <td className="px-6 py-4 whitespace-nowrap">
@@ -84,13 +89,15 @@ const ApplicationDataRow = ({ application, onOpenView, onOpenCancel }) => {
             </div>
           )}
 
-          {/* <ReportBtn
-            onClick={onOpenDelete}
-            icon={LuBadgeDollarSign}
-            color="blue"
-            title="Pay"
-            // children="Delete"
-          /> */}
+          {application?.fee_status !== "paid" && (
+            <ReportBtn
+              onClick={onOpenPay}
+              icon={LuBadgeDollarSign}
+              color="blue"
+              title="Pay"
+              // children="Delete"
+            />
+          )}
         </div>
       </td>
     </tr>

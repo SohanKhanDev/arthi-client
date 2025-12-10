@@ -6,11 +6,12 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import ApplicationDataRow from "../../TableRow/ApplicationDataRow";
 import ViewApplicationModal from "../../ModalPage/ViewApplicationModal";
 import CancelApplicationModal from "../../ModalPage/CancelApplicationModal";
+import PayApplicaitonFeeModal from "../../ModalPage/PayApplicaitonFeeModal";
 
 const MyLoans = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isCancelOpen, setIsCancelOpen] = useState(false);
-  // const [isSuspendOpen, setIsSuspendOpen] = useState(false);
+  const [isPayOpen, setIsPayOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
 
   const axiosSecure = useAxiosSecure();
@@ -42,9 +43,7 @@ const MyLoans = () => {
     <>
       <div className="p-6 max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">
-            Manage Users
-          </h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">My Loans</h1>
         </div>
 
         <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
@@ -74,10 +73,10 @@ const MyLoans = () => {
                       setSelectedApplication(application);
                       setIsCancelOpen(true);
                     }}
-                    // onOpenSuspend={() => {
-                    //   setSelectedUser(user);
-                    //   setIsSuspendOpen(true);
-                    // }}
+                    onOpenPay={() => {
+                      setSelectedApplication(application);
+                      setIsPayOpen(true);
+                    }}
                   />
                 ))}
               </tbody>
@@ -126,13 +125,12 @@ const MyLoans = () => {
         application={selectedApplication}
       />
 
-      {/*
-      <SuspendUserModal
-        isOpen={isSuspendOpen}
-        closeModal={() => setIsSuspendOpen(false)}
+      <PayApplicaitonFeeModal
+        isOpen={isPayOpen}
+        closeModal={() => setIsPayOpen(false)}
         refetch={refetch}
-        user={selectedUser}
-      /> */}
+        application={selectedApplication}
+      />
     </>
   );
 };
