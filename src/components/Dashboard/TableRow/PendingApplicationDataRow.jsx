@@ -4,12 +4,13 @@ import { FaEye } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import { LuBadgeDollarSign } from "react-icons/lu";
 import { Link } from "react-router";
+import { TiTick } from "react-icons/ti";
 
 const PendingApplicationDataRow = ({
   application,
   onOpenView,
   onOpenReject,
-  onOpenPay,
+  onOpenApprove,
   onOpenPaymentInfo,
 }) => {
   return (
@@ -102,12 +103,12 @@ const PendingApplicationDataRow = ({
             </div>
           )}
 
-          {application?.fee_status !== "paid" && (
+          {application?.fee_status === "paid" && (
             <ReportBtn
-              onClick={onOpenPay}
-              icon={LuBadgeDollarSign}
+              onClick={onOpenApprove}
+              icon={TiTick}
               color="blue"
-              title="Pay"
+              title="Approve"
               // children="Delete"
             />
           )}

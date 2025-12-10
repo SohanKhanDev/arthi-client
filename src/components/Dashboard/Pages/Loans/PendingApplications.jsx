@@ -10,12 +10,13 @@ import PaymentInfoModal from "../../ModalPage/PaymentInfoModal";
 import useAuth from "../../../../hooks/useAuth";
 import PendingApplicationDataRow from "../../TableRow/PendingApplicationDataRow";
 import RejectApplicationModal from "../../ModalPage/RejectApplicationModal";
+import ApproveApplicationModal from "../../ModalPage/ApproveApplicationModal";
 
 const PendingApplications = () => {
   const { user } = useAuth();
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isRejectOpen, setIsRejectOpen] = useState(false);
-  const [isPayOpen, setIsPayOpen] = useState(false);
+  const [isApproveOpen, setIsApproveOpen] = useState(false);
   const [isPaymentInfoOpen, setIsPaymentInfoOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
 
@@ -79,9 +80,9 @@ const PendingApplications = () => {
                       setSelectedApplication(application);
                       setIsRejectOpen(true);
                     }}
-                    onOpenPay={() => {
+                    onOpenApprove={() => {
                       setSelectedApplication(application);
-                      setIsPayOpen(true);
+                      setIsApproveOpen(true);
                     }}
                     onOpenPaymentInfo={() => {
                       setSelectedApplication(application);
@@ -141,9 +142,9 @@ const PendingApplications = () => {
         application={selectedApplication}
       />
 
-      <PayApplicaitonFeeModal
-        isOpen={isPayOpen}
-        closeModal={() => setIsPayOpen(false)}
+      <ApproveApplicationModal
+        isOpen={isApproveOpen}
+        closeModal={() => setIsApproveOpen(false)}
         refetch={refetch}
         application={selectedApplication}
       />
