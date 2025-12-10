@@ -7,7 +7,7 @@ import { ImBin } from "react-icons/im";
 import toast from "react-hot-toast";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 
-const CancelApplicationModal = ({
+const RejectApplicationModal = ({
   isOpen,
   closeModal,
   application,
@@ -16,16 +16,16 @@ const CancelApplicationModal = ({
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
 
-  const handleCancelApplication = async () => {
+  const handleRejectApplication = async () => {
     setLoading(true);
-    const statusData = { status: "cancel" };
+    const statusData = { status: "rejected" };
     try {
       await axiosSecure.patch(`/application/${application._id}`, statusData);
       refetch();
       closeModal();
-      toast.success("Application cancelled successfully");
+      toast.success("Application rejected successfully");
     } catch {
-      toast.error("Error cancelling application");
+      toast.error("Error rejecting application");
     } finally {
       setLoading(false);
     }
@@ -58,7 +58,7 @@ const CancelApplicationModal = ({
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-slate-900">
-                  Cancel Application
+                  Reject Application
                 </h2>
                 <p className="text-slate-500 text-sm">
                   This action cannot be undone.
@@ -70,9 +70,9 @@ const CancelApplicationModal = ({
           {/* Body */}
           <div className="p-8">
             <p className="text-slate-600 leading-relaxed">
-              Are you sure you want to cancel{" "}
+              Are you sure you want to reject{" "}
               <strong>"{application?.title}"</strong>? This action will update
-              the application status to cancelled.
+              the application status to rejected.
             </p>
           </div>
 
@@ -92,7 +92,7 @@ const CancelApplicationModal = ({
               variant="danger"
               size="md"
               disabled={loading}
-              onClick={handleCancelApplication}
+              onClick={handleRejectApplication}
             />
           </div>
         </DialogPanel>
@@ -101,4 +101,4 @@ const CancelApplicationModal = ({
   );
 };
 
-export default CancelApplicationModal;
+export default RejectApplicationModal;

@@ -44,9 +44,9 @@ const SuspendUserModal = ({ isOpen, closeModal, refetch, user }) => {
     >
       <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" />
       <div className="fixed inset-0 flex items-center justify-center p-4">
-        <DialogPanel className="max-w-md w-full rounded-2xl bg-gradient-to-br from-white to-slate-50 p-8 shadow-2xl ring-1 ring-black/10 transition-all duration-300">
+        <DialogPanel className="max-w-md w-full rounded-2xl bg-linear-to-br from-white to-slate-50 p-8 shadow-2xl ring-1 ring-black/10 transition-all duration-300">
           {/* Warning Icon Header */}
-          <div className="flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl shadow-lg">
+          <div className="flex items-center justify-center w-20 h-20 mx-auto mb-6 bg-linear-to-r from-orange-500 to-red-500 rounded-2xl shadow-lg">
             <MdBlock className="w-10 h-10 text-white" />
           </div>
 
@@ -118,7 +118,7 @@ const SuspendUserModal = ({ isOpen, closeModal, refetch, user }) => {
                 size="md"
                 type="submit"
                 disabled={!isValid}
-                className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
               />
             </div>
           </form>
