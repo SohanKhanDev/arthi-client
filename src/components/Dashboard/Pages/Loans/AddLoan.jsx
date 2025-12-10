@@ -1,14 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 import { toast } from "react-hot-toast";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { imageupload } from "../../../../utils";
 import MyBtn from "../../../Shared/MyBtn";
+import { MdCancel } from "react-icons/md";
 
 const AddLoan = () => {
-  const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -59,7 +58,6 @@ const AddLoan = () => {
       if (response.status === 200 || response.status === 201) {
         toast.success("Loan added successfully!");
         reset();
-        navigate("/dashboard/manage-loans");
       } else {
         toast.error("Failed to add loan");
       }

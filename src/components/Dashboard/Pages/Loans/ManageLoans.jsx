@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
-import UserDataRow from "../../TableRow/UserDataRow";
 import useAuth from "../../../../hooks/useAuth";
-import UpdateRoleModal from "../../ModalPage/UpdateRoleModal";
-import ApproveUserModal from "../../ModalPage/ApproveUserModal";
-import SuspendUserModal from "../../ModalPage/SuspendUserModal";
 import LoansDataRow from "../../TableRow/LoansDataRow";
 import DeleteLoanModal from "../../ModalPage/DeleteLoanModal";
+import EditLoanModal from "../../ModalPage/EditLoanModal";
 
 const ManageLoans = () => {
   const axiosSecure = useAxiosSecure();
   const { user, loading: authLoading } = useAuth();
-  const [isUpdateOpen, setIsUpdateOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedLoan, setSelectedLoan] = useState(null);
 
   const {
@@ -46,6 +43,9 @@ const ManageLoans = () => {
           <h1 className="text-3xl font-bold text-slate-900 mb-2">
             Manage Loans
           </h1>
+          <p className="text-slate-600">
+            View, edit, and manage all loan products
+          </p>
         </div>
 
         <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
@@ -55,8 +55,10 @@ const ManageLoans = () => {
                 <tr>
                   <th className="tbl-header">Photo</th>
                   <th className="tbl-header">Title</th>
-                  <th className="tbl-header">Interest</th>
+                  <th className="tbl-header">Interest Rate</th>
+                  <th className="tbl-header">Max Limit</th>
                   <th className="tbl-header">Category</th>
+                  <th className="tbl-header">Home Page</th>
                   <th className="tbl-header">Actions</th>
                 </tr>
               </thead>
@@ -66,17 +68,13 @@ const ManageLoans = () => {
                     key={loan?._id}
                     loan={loan}
                     refetch={refetch}
-                    onOpenUpdate={() => {
+                    onOpenDelete={() => {
                       setSelectedLoan(loan);
-                      setIsUpdateOpen(true);
+                      setIsDeleteOpen(true);
                     }}
-                    onOpenApprove={() => {
+                    onEditOpen={() => {
                       setSelectedLoan(loan);
-                      setIsApproveOpen(true);
-                    }}
-                    onOpenSuspend={() => {
-                      setSelectedLoan(loan);
-                      setIsSuspendOpen(true);
+                      setIsEditOpen(true);
                     }}
                   />
                 ))}
@@ -101,21 +99,19 @@ const ManageLoans = () => {
                   />
                 </svg>
               </div>
-
               <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                No users found
+                No loans found
               </h3>
               <p className="text-slate-500 mb-6">
-                No users to manage at the moment.
+                No loans to manage at the moment.
               </p>
             </div>
           )}
         </div>
       </div>
-
-      <UpdateRoleModal
-        isOpen={isUpdateOpen}
-        closeModal={() => setIsUpdateOpen(false)}
+      <EditLoanModal
+        isOpen={isEditOpen}
+        closeModal={() => setIsEditOpen(false)}
         refetch={refetch}
         loan={selectedLoan}
       />
