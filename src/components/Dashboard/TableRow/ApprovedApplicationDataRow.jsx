@@ -30,6 +30,13 @@ const ApprovedApplicationDataRow = ({
         </div>
       </td>
 
+      {/* loan Category */}
+      <td className="px-6 py-4 text-center">
+        <div className="text-sm font-medium text-slate-900">
+          {application?.category?.toUpperCase()}
+        </div>
+      </td>
+
       {/* Max Loan Limit */}
       <td className="px-6 py-4 text-center">
         <div className="text-sm font-medium text-slate-900">

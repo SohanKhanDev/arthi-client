@@ -34,6 +34,8 @@ const ApplyLoanModal = ({ isApplyOpen, closeModal, loan }) => {
       const submitData = {
         title: data.title,
         interestRate: data.interestRate,
+        category: loan?.category,
+        loanId: loan?._id,
         first_name: data.fname,
         last_name: data.lname,
         address: data.address,

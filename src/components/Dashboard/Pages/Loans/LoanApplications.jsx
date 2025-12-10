@@ -1,0 +1,173 @@
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import LoadingSpinner from "../../../Shared/LoadingSpinner";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import ViewApplicationModal from "../../ModalPage/ViewApplicationModal";
+import PaymentInfoModal from "../../ModalPage/PaymentInfoModal";
+import useAuth from "../../../../hooks/useAuth";
+import ApprovedApplicationDataRow from "../../TableRow/ApprovedApplicationDataRow";
+
+const LoanApplications = () => {
+  const { user } = useAuth();
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [isPaymentInfoOpen, setIsPaymentInfoOpen] = useState(false);
+  const [selectedApplication, setSelectedApplication] = useState(null);
+  const [filterStatus, setFilterStatus] = useState("all");
+
+  const axiosSecure = useAxiosSecure();
+
+  const {
+    data: loanApplications = [],
+    isLoading,
+    isFetching,
+    refetch,
+  } = useQuery({
+    queryKey: ["loanApplications", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/all-applications`);
+      return data;
+    },
+  });
+
+  if (isLoading || isFetching) {
+    return (
+      <div className="min-h-screen bg-linear-to-br from-slate-50 to-emerald-50 flex items-center justify-center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  const filteredApplications = loanApplications.filter(
+    (app) => filterStatus === "all" || app?.status === filterStatus
+  );
+  const getStatusCount = (status) => {
+    return loanApplications.filter((app) => app?.status === status).length;
+  };
+
+  return (
+    <>
+      <div className="p-6 max-w-7xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">
+            All Applications
+          </h1>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {[
+            { key: "all", label: "All", count: loanApplications.length },
+            {
+              key: "pending",
+              label: "Pending",
+              count: getStatusCount("pending"),
+            },
+            {
+              key: "approved",
+              label: "Approved",
+              count: getStatusCount("approved"),
+            },
+            {
+              key: "rejected",
+              label: "Rejected",
+              count: getStatusCount("rejected"),
+            },
+          ].map(({ key, label, count }) => (
+            <button
+              key={key}
+              onClick={() => setFilterStatus(key)}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
+                filterStatus === key
+                  ? "bg-emerald-500 text-white shadow-lg transform scale-105"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              {label}
+              <span className="text-xs font-normal bg-white/20 px-1.5 py-0.5 rounded-full min-w-6 text-center">
+                {count}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-linear-to-r from-slate-50 to-slate-100">
+                <tr>
+                  <th className="tbl-header">Loan ID</th>
+                  <th className="tbl-header">User Info</th>
+                  <th className="tbl-header">Category</th>
+                  <th className="tbl-header">Amount</th>
+                  <th className="tbl-header">Date</th>
+                  <th className="tbl-header">Payment Status</th>
+                  <th className="tbl-header">Status</th>
+                  <th className="tbl-header">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody className="divide-y divide-slate-200">
+                {filteredApplications.map((application) => (
+                  <ApprovedApplicationDataRow
+                    key={application?._id}
+                    application={application}
+                    refetch={refetch}
+                    onOpenView={() => {
+                      setSelectedApplication(application);
+                      setIsViewOpen(true);
+                    }}
+                    onOpenPaymentInfo={() => {
+                      setSelectedApplication(application);
+                      setIsPaymentInfoOpen(true);
+                    }}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {filteredApplications.length === 0 && (
+            <div className="text-center py-12">
+              <div className="w-24 h-24 mx-auto mb-4 bg-slate-100 rounded-2xl flex items-center justify-center">
+                <svg
+                  className="w-12 h-12 text-slate-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1}
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                  />
+                </svg>
+              </div>
+
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                No loan found
+              </h3>
+              <p className="text-slate-500 mb-6">
+                No loan to manage at the moment.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <PaymentInfoModal
+        isOpen={isPaymentInfoOpen}
+        closeModal={() => setIsPaymentInfoOpen(false)}
+        application={selectedApplication}
+      />
+
+      <ViewApplicationModal
+        isOpen={isViewOpen}
+        closeModal={() => setIsViewOpen(false)}
+        application={selectedApplication}
+      />
+    </>
+  );
+};
+
+export default LoanApplications;

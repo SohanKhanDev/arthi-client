@@ -14,7 +14,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../components/Dashboard/Pages/Profile";
 import ManageUser from "../components/Dashboard/Pages/ManageUser";
 import AllLoanManage from "../components/Dashboard/Pages/AllLoanManage";
-import LoanApplications from "../components/Dashboard/Pages/LoanApplications";
+
 import SignupPending from "../pages/SignUp/SignupPending";
 import AddLoan from "../components/Dashboard/Pages/Loans/AddLoan";
 import ManageLoans from "../components/Dashboard/Pages/Loans/ManageLoans";
@@ -23,6 +23,7 @@ import ApprovedApplications from "../components/Dashboard/Pages/Loans/ApprovedAp
 import MyLoans from "../components/Dashboard/Pages/Loans/MyLoans";
 import LoanDetails from "../pages/Loans/LoanDetails";
 import PaymentSucess from "../components/Dashboard/Pages/Payment/PaymentSucess";
+import LoanApplications from "../components/Dashboard/Pages/Loans/LoanApplications";
 
 export const router = createBrowserRouter([
   {
