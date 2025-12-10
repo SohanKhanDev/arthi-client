@@ -11,7 +11,6 @@ const PayApplicationFeeModal = ({ isOpen, closeModal, application }) => {
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
-  console.log(application);
 
   const handlePayFee = async () => {
     setLoading(true);

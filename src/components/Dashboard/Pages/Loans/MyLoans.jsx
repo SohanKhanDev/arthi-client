@@ -7,16 +7,17 @@ import ApplicationDataRow from "../../TableRow/ApplicationDataRow";
 import ViewApplicationModal from "../../ModalPage/ViewApplicationModal";
 import CancelApplicationModal from "../../ModalPage/CancelApplicationModal";
 import PayApplicaitonFeeModal from "../../ModalPage/PayApplicaitonFeeModal";
+import PaymentInfoModal from "../../ModalPage/PaymentInfoModal";
 
 const MyLoans = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isCancelOpen, setIsCancelOpen] = useState(false);
   const [isPayOpen, setIsPayOpen] = useState(false);
+  const [isPaymentInfoOpen, setIsPaymentInfoOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
 
   const axiosSecure = useAxiosSecure();
   const { email } = useParams();
-  console.log(email);
 
   const {
     data: loanApplications = [],
@@ -77,6 +78,10 @@ const MyLoans = () => {
                       setSelectedApplication(application);
                       setIsPayOpen(true);
                     }}
+                    onOpenPaymentInfo={() => {
+                      setSelectedApplication(application);
+                      setIsPaymentInfoOpen(true);
+                    }}
                   />
                 ))}
               </tbody>
@@ -111,6 +116,12 @@ const MyLoans = () => {
           )}
         </div>
       </div>
+
+      <PaymentInfoModal
+        isOpen={isPaymentInfoOpen}
+        closeModal={() => setIsPaymentInfoOpen(false)}
+        application={selectedApplication}
+      />
 
       <ViewApplicationModal
         isOpen={isViewOpen}

@@ -3,12 +3,14 @@ import ReportBtn from "../../Shared/ReportBtn";
 import { FaEye } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import { LuBadgeDollarSign } from "react-icons/lu";
+import { Link } from "react-router";
 
 const ApplicationDataRow = ({
   application,
   onOpenView,
   onOpenCancel,
   onOpenPay,
+  onOpenPaymentInfo,
 }) => {
   return (
     <tr className="hover:bg-slate-50/50 transition-colors group">
@@ -37,7 +39,8 @@ const ApplicationDataRow = ({
 
       {/* Category Badge */}
       <td className="px-6 py-4 text-center">
-        <span
+        <Link
+          onClick={onOpenPaymentInfo}
           className={`px-3 py-1 rounded-full text-xs font-semibold inline-block ${
             application?.fee_status === "paid"
               ? "bg-linear-to-r from-purple-500 to-pink-500 text-white shadow-lg"
@@ -47,7 +50,7 @@ const ApplicationDataRow = ({
           }`}
         >
           {application?.fee_status?.toUpperCase()}
-        </span>
+        </Link>
       </td>
 
       {/* Category Badge */}
