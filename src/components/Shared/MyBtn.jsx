@@ -49,6 +49,8 @@ const getVariantStyles = (variant) => {
       return "bg-gradient-to-r from-slate-500 to-slate-700 hover:from-slate-600 hover:to-slate-800 text-white border border-slate-500/50";
     case "danger":
       return "bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white border border-rose-500/50";
+    case "cancel":
+      return "bg-gradient-to-r from-white to-white hover:from-white hover:to-white text-black border border-black";
     default:
       return "bg-gradient-to-r from-slate-500 to-slate-700 hover:from-slate-600 hover:to-slate-800 text-white border border-slate-500/50";
   }

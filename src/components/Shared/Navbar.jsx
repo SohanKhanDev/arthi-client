@@ -7,7 +7,6 @@ import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
 
   const publicLinks = [
     { id: 1, title: "Home", path: "/" },

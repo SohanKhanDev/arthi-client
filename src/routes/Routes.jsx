@@ -21,6 +21,7 @@ import ManageLoans from "../components/Dashboard/Pages/Loans/ManageLoans";
 import PendingApplications from "../components/Dashboard/Pages/Loans/PendingApplications";
 import ApprovedApplications from "../components/Dashboard/Pages/Loans/ApprovedApplications";
 import MyLoans from "../components/Dashboard/Pages/Loans/MyLoans";
+import LoanDetails from "../pages/Loans/LoanDetails";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
       { path: "/contact", element: <Contact /> },
 
       { path: "/all-loans", element: <AllLoans /> },
+      { path: "/loan/:id", element: <LoanDetails /> },
 
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <SignUp /> },

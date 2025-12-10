@@ -2,6 +2,7 @@ import MyBtn from "../../Shared/MyBtn";
 import { RxUpdate } from "react-icons/rx";
 import { FaCircleStop } from "react-icons/fa6";
 import { FaRegCirclePlay } from "react-icons/fa6";
+import ReportBtn from "../../Shared/ReportBtn";
 
 const UserDataRow = ({ user, onOpenUpdate, onOpenSuspend, onOpenApprove }) => {
   return (
@@ -53,27 +54,28 @@ const UserDataRow = ({ user, onOpenUpdate, onOpenSuspend, onOpenApprove }) => {
         </span>
       </td>
       <td className="flex items-center justify-center gap-2 p-2">
-        <MyBtn
-          //   label="Update"
-          variant="default"
-          size="sm"
-          icon={RxUpdate}
+        <ReportBtn
           onClick={onOpenUpdate}
-        />
-        <MyBtn
-          //   label="Suspend"
-          variant="primary"
-          size="sm"
-          icon={FaRegCirclePlay}
-          onClick={onOpenApprove}
+          icon={RxUpdate}
+          color="blue"
+          title="Update"
+          // children="Delete"
         />
 
-        <MyBtn
-          //   label="Suspend"
-          variant="danger"
-          size="sm"
-          icon={FaCircleStop}
+        <ReportBtn
+          onClick={onOpenApprove}
+          icon={FaRegCirclePlay}
+          color="green"
+          title="Approve"
+          // children="Delete"
+        />
+
+        <ReportBtn
           onClick={onOpenSuspend}
+          icon={FaCircleStop}
+          color="red"
+          title="Suspend"
+          // children="Delete"
         />
       </td>
     </tr>
