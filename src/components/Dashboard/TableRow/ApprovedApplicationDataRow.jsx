@@ -6,11 +6,9 @@ import { LuBadgeDollarSign } from "react-icons/lu";
 import { Link } from "react-router";
 import { TiTick } from "react-icons/ti";
 
-const PendingApplicationDataRow = ({
+const ApprovedApplicationDataRow = ({
   application,
   onOpenView,
-  onOpenReject,
-  onOpenApprove,
   onOpenPaymentInfo,
 }) => {
   return (
@@ -96,32 +94,10 @@ const PendingApplicationDataRow = ({
             title="Edit"
             // children="Delete"
           />
-
-          {application?.status === "pending" && (
-            <div>
-              <ReportBtn
-                onClick={onOpenReject}
-                icon={MdOutlineCancel}
-                color="red"
-                title="Delete"
-                // children="Delete"
-              />
-            </div>
-          )}
-
-          {application?.fee_status === "paid" && (
-            <ReportBtn
-              onClick={onOpenApprove}
-              icon={TiTick}
-              color="blue"
-              title="Approve"
-              // children="Delete"
-            />
-          )}
         </div>
       </td>
     </tr>
   );
 };
 
-export default PendingApplicationDataRow;
+export default ApprovedApplicationDataRow;
