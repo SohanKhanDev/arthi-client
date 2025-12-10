@@ -5,10 +5,11 @@ import LoadingSpinner from "../../../Shared/LoadingSpinner";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import ApplicationDataRow from "../../TableRow/ApplicationDataRow";
 import ViewApplicationModal from "../../ModalPage/ViewApplicationModal";
+import CancelApplicationModal from "../../ModalPage/CancelApplicationModal";
 
 const MyLoans = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
-  // const [isApproveOpen, setIsApproveOpen] = useState(false);
+  const [isCancelOpen, setIsCancelOpen] = useState(false);
   // const [isSuspendOpen, setIsSuspendOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
 
@@ -69,10 +70,10 @@ const MyLoans = () => {
                       setSelectedApplication(application);
                       setIsViewOpen(true);
                     }}
-                    // onOpenApprove={() => {
-                    //   setSelectedUser(user);
-                    //   setIsApproveOpen(true);
-                    // }}
+                    onOpenCancel={() => {
+                      setSelectedApplication(application);
+                      setIsCancelOpen(true);
+                    }}
                     // onOpenSuspend={() => {
                     //   setSelectedUser(user);
                     //   setIsSuspendOpen(true);
@@ -118,14 +119,14 @@ const MyLoans = () => {
         application={selectedApplication}
       />
 
-      {/*
-      <ApproveUserModal
-        isOpen={isApproveOpen}
-        closeModal={() => setIsApproveOpen(false)}
+      <CancelApplicationModal
+        isOpen={isCancelOpen}
+        closeModal={() => setIsCancelOpen(false)}
         refetch={refetch}
-        user={selectedUser}
+        application={selectedApplication}
       />
 
+      {/*
       <SuspendUserModal
         isOpen={isSuspendOpen}
         closeModal={() => setIsSuspendOpen(false)}

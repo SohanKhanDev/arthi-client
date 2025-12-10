@@ -4,7 +4,7 @@ import { FaEye } from "react-icons/fa6";
 import { MdOutlineCancel } from "react-icons/md";
 import { LuBadgeDollarSign } from "react-icons/lu";
 
-const ApplicationDataRow = ({ application, onOpenView }) => {
+const ApplicationDataRow = ({ application, onOpenView, onOpenCancel }) => {
   return (
     <tr className="hover:bg-slate-50/50 transition-colors group">
       <td className="px-6 py-4 whitespace-nowrap">
@@ -64,24 +64,26 @@ const ApplicationDataRow = ({ application, onOpenView }) => {
       {/* Actions */}
       <td className="px-6 py-4 text-center">
         <div className="flex items-center justify-center gap-2  group-hover:opacity-100 transition-all duration-200">
+          <ReportBtn
+            onClick={onOpenView}
+            icon={FaEye}
+            color="green"
+            title="Edit"
+            // children="Delete"
+          />
+
           {application?.status === "pending" && (
             <div>
               <ReportBtn
-                onClick={onOpenView}
-                icon={FaEye}
-                color="green"
-                title="Edit"
+                onClick={onOpenCancel}
+                icon={MdOutlineCancel}
+                color="red"
+                title="Delete"
                 // children="Delete"
               />
             </div>
           )}
-          {/* <ReportBtn
-            onClick={onOpenDelete}
-            icon={MdOutlineCancel}
-            color="red"
-            title="Delete"
-            // children="Delete"
-          /> */}
+
           {/* <ReportBtn
             onClick={onOpenDelete}
             icon={LuBadgeDollarSign}
