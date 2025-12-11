@@ -2,11 +2,12 @@ import { Outlet } from "react-router";
 import Sidebar from "../components/Dashboard/Sidebar/Sidebar";
 import Navbar from "../components/Shared/Navbar";
 import Footer from "../components/Shared/Footer";
+import DashboardNavbar from "../components/Shared/DashboradNavbar";
 
 const DashboardLayout = () => {
   return (
     <div className="min-h-screen">
-      {/* <Navbar /> */}
+      <DashboardNavbar />
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] bg-white">
         <div className="col-span-1 h-full">
           <Sidebar />
@@ -16,7 +17,7 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

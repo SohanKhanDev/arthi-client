@@ -19,7 +19,7 @@ import useDBUser from "../../../hooks/usedbUser";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 
 const Sidebar = () => {
-  const { logOut, user } = useAuth();
+  const { logOut } = useAuth;
   const [isActive, setActive] = useState(false);
   const { dbUser, isLoading } = useDBUser();
 
@@ -68,7 +68,7 @@ const Sidebar = () => {
         {/* Sidebar Scroll Container */}
         <div className="h-full flex flex-col overflow-hidden">
           {/* Sidebar Header */}
-          <div className="p-6 border-b border-slate-700/50 shrink-0">
+          {/* <div className="p-6 border-b border-slate-700/50 shrink-0">
             <Link to="/" className="flex items-center space-x-3 mb-2">
               <div className=" rounded-2xl shadow-lg flex items-center justify-center">
                 <img src={logo} alt="logo" className="w-16 h-16" />
@@ -82,7 +82,7 @@ const Sidebar = () => {
                 </p>
               </div>
             </Link>
-          </div>
+          </div> */}
 
           {/* Navigation Menu - Scrollable */}
           <nav className="flex-1 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800 ">

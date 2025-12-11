@@ -1,9 +1,14 @@
 import React from "react";
+import Slider from "../../components/Home/Slider";
+import HowItWorks from "../../components/Home/HowItWorks";
+import TestimonialsSlider from "../../components/Home/TestimonialsSlider";
 
 const Home = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <Slider />
+      <HowItWorks />
+      <TestimonialsSlider />
     </div>
   );
 };

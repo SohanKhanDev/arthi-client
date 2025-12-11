@@ -13,7 +13,7 @@ import Contact from "../pages/Contact/Contact";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Profile from "../components/Dashboard/Pages/Profile";
 import ManageUser from "../components/Dashboard/Pages/ManageUser";
-import AllLoanManage from "../components/Dashboard/Pages/AllLoanManage";
+import AllLoanManage from "../components/Dashboard/Pages/Loans/AllLoanManage";
 
 import SignupPending from "../pages/SignUp/SignupPending";
 import AddLoan from "../components/Dashboard/Pages/Loans/AddLoan";
@@ -24,6 +24,7 @@ import MyLoans from "../components/Dashboard/Pages/Loans/MyLoans";
 import LoanDetails from "../pages/Loans/LoanDetails";
 import PaymentSucess from "../components/Dashboard/Pages/Payment/PaymentSucess";
 import LoanApplications from "../components/Dashboard/Pages/Loans/LoanApplications";
+import ApplyLoan from "../pages/Loans/ApplyLoan";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
       { path: "/contact", element: <Contact /> },
 
       { path: "/all-loans", element: <AllLoans /> },
+      { path: "/apply-loan", element: <ApplyLoan /> },
       { path: "/loan/:id", element: <LoanDetails /> },
 
       { path: "/login", element: <Login /> },

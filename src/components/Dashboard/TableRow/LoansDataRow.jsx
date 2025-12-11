@@ -3,8 +3,13 @@ import { RxEyeOpen } from "react-icons/rx";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import ReportBtn from "../../Shared/ReportBtn";
 import { FiEdit } from "react-icons/fi";
+import useDBUser from "../../../hooks/usedbUser";
+import { TbHome2 } from "react-icons/tb";
+import { TbHomeOff } from "react-icons/tb";
 
-const LoansDataRow = ({ loan, onOpenDelete, onEditOpen }) => {
+const LoansDataRow = ({ loan, onOpenDelete, onEditOpen, onToggleHome }) => {
+  const { dbUser } = useDBUser();
+
   return (
     <tr className="hover:bg-slate-50/50 transition-colors group">
       {/* Photo */}
@@ -20,12 +25,9 @@ const LoansDataRow = ({ loan, onOpenDelete, onEditOpen }) => {
       </td>
 
       {/* Title */}
-      <td className="px-6 py-4">
+      <td className="px-6 py-4 text-center">
         <div className="text-sm font-semibold text-slate-900 max-w-xs">
           {loan?.title}
-        </div>
-        <div className="text-xs text-slate-500 mt-1">
-          {loan?.category?.replace(/\b\w/g, (l) => l.toUpperCase())}
         </div>
       </td>
 
@@ -39,7 +41,7 @@ const LoansDataRow = ({ loan, onOpenDelete, onEditOpen }) => {
       {/* Max Loan Limit */}
       <td className="px-6 py-4 text-center">
         <div className="text-sm font-medium text-slate-900">
-          ৳{loan?.maxLoanLimit?.toLocaleString() || "N/A"}
+          Tk. {loan?.maxLoanLimit?.toLocaleString() || "N/A"}
         </div>
       </td>
 
@@ -93,6 +95,15 @@ const LoansDataRow = ({ loan, onOpenDelete, onEditOpen }) => {
             title="Delete"
             // children="Delete"
           />
+
+          {dbUser.role === "admin" && (
+            <ReportBtn
+              onClick={() => onToggleHome(loan._id, !loan.showOnHome)}
+              icon={loan.showOnHome ? TbHome2 : TbHomeOff}
+              color={loan.showOnHome ? "green" : "blue"}
+              title={loan.showOnHome ? "Remove from Home" : "Add to Home"}
+            />
+          )}
         </div>
       </td>
     </tr>

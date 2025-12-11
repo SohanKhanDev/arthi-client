@@ -202,7 +202,7 @@ const LoanDetails = () => {
           </div>
 
           {/* Back Button */}
-          <Link to="/dashboard/loans" className="btn btn-primary h-13 w-full">
+          <Link to="/all-loans" className="btn btn-primary h-13 w-full">
             ← Back to Loans
           </Link>
 
