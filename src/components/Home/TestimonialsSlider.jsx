@@ -6,6 +6,8 @@ import "swiper/css/pagination";
 import { FaStar } from "react-icons/fa";
 import TestimonialCard from "./TestimonialCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
 
 const TestimonialsSlider = () => {
   /*** ----------*** :: HOOKS :: ***---------- ***/
@@ -23,21 +25,32 @@ const TestimonialsSlider = () => {
     };
     fetchTestimonials();
   }, [axiosSecure]);
-  console.log(testimonials);
 
   return (
     <section className="py-16 container mx-auto px-3 hidden md:block">
       {/* Title Section */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold mb-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+        >
           <span className="text-primary">What </span>
           <span className="text-secondary">Our Customers Are Saying!</span>
-        </h2>
-        <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+        </motion.h2>
+        <motion.p
+          className="text-xl text-slate-600 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           Real stories from approved borrowers. Hear how our fast loan process,
           competitive rates, and reliable service helped them achieve their
           dreams and financial goals.
-        </p>
+        </motion.p>
       </div>
 
       <div className="container mx-auto px-4 text-center">
