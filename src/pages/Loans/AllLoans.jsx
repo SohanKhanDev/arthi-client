@@ -76,7 +76,7 @@ const AllLoans = () => {
               Browse loan offers
             </h1>
             <p className="mt-1 text-sm text-slate-500">
-              Choose from {loans.length} curated loan products.
+              Choose from {totalLoans} curated loan products.
             </p>
           </div>
         </div>

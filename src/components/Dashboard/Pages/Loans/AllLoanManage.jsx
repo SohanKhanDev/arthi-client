@@ -24,7 +24,7 @@ const AllLoanManage = () => {
   } = useQuery({
     queryKey: ["all-loans"],
     queryFn: async () => {
-      const { data } = await axiosSecure("/loans");
+      const { data } = await axiosSecure("/all-loans");
       return data;
     },
     enabled: !!user,

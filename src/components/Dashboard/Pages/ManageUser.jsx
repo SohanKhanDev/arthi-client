@@ -15,6 +15,8 @@ const ManageUser = () => {
   const [isApproveOpen, setIsApproveOpen] = useState(false);
   const [isSuspendOpen, setIsSuspendOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const {
     data: appUsers = [],
@@ -34,6 +36,20 @@ const ManageUser = () => {
     document.title = "MANAGE USER | ARTHI";
   }, []);
 
+  const filteredUsers = appUsers.filter((user) => {
+    const matchesSearch =
+      !searchTerm.trim() ||
+      user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.role?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "all" ||
+      user.status?.toLowerCase() === statusFilter.toLowerCase();
+
+    return matchesSearch && matchesStatus;
+  });
+
   if (isLoading || isFetching || authLoading) {
     return (
       <div className="min-h-screen bg-linear-to-br from-slate-50 to-emerald-50 flex items-center justify-center">
@@ -51,6 +67,62 @@ const ManageUser = () => {
           </h1>
         </div>
 
+        <div className="mb-6 flex flex-col lg:flex-row gap-4 items-end">
+          {/* Search Input */}
+          <div className="flex-1 relative min-w-[300px]">
+            <input
+              type="text"
+              placeholder="Search by name or role..."
+              className="w-full pl-12 pr-4 py-3 bg-white/80 backdrop-blur-xl border border-slate-200 rounded-2xl shadow-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-400"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+
+          <div className="flex gap-2 bg-white/80 backdrop-blur-xl p-2 rounded-2xl border border-slate-200 shadow-lg">
+            <button
+              onClick={() => setStatusFilter("all")}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                statusFilter === "all"
+                  ? "bg-emerald-500 text-white shadow-md"
+                  : "text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => setStatusFilter("approved")}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                statusFilter === "approved"
+                  ? "bg-emerald-500 text-white shadow-md"
+                  : "text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              Approved
+            </button>
+            <button
+              onClick={() => setStatusFilter("pending")}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                statusFilter === "pending"
+                  ? "bg-amber-500 text-white shadow-md"
+                  : "text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              Pending
+            </button>
+            <button
+              onClick={() => setStatusFilter("suspended")}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                statusFilter === "suspended"
+                  ? "bg-red-500 text-white shadow-md"
+                  : "text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              Suspended
+            </button>
+          </div>
+        </div>
+
         <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -65,7 +137,7 @@ const ManageUser = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {appUsers.map((user) => (
+                {filteredUsers.map((user) => (
                   <UserDataRow
                     key={user?._id}
                     user={user}
