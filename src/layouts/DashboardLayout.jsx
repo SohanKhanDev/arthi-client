@@ -3,8 +3,13 @@ import Sidebar from "../components/Dashboard/Sidebar/Sidebar";
 import Navbar from "../components/Shared/Navbar";
 import Footer from "../components/Shared/Footer";
 import DashboardNavbar from "../components/Shared/DashboradNavbar";
+import { useEffect } from "react";
 
 const DashboardLayout = () => {
+  useEffect(() => {
+    document.title = "DASHBOARD | ARTHI";
+  }, []);
+
   return (
     <div className="min-h-screen">
       <DashboardNavbar />

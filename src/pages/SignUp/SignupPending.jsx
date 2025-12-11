@@ -16,6 +16,10 @@ const SignupPending = () => {
     }
   }, [timeLeft, navigate]);
 
+  useEffect(() => {
+    document.title = "APPROVAL PENDING | ARTHI";
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center p-8 ">
       <div className="max-w-sm w-full bg-white rounded-2xl p-8 shadow-lg border border-slate-100">

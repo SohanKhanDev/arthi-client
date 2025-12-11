@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
@@ -36,6 +36,10 @@ const AllLoanManage = () => {
       loan.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       loan.category?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  useEffect(() => {
+    document.title = "MANAGE LOAN | ARTHI";
+  }, []);
 
   if (isLoading || isFetching || authLoading) {
     return (

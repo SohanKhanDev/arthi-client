@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
 import useDBUser from "../../../hooks/usedbUser";
@@ -11,6 +11,10 @@ const Profile = () => {
   const { dbUser, isLoading } = useDBUser();
   const { logOut } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "PROFILE | ARTHI";
+  }, []);
 
   if (isLoading) {
     return (

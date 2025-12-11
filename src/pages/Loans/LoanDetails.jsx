@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -32,6 +32,10 @@ const LoanDetails = () => {
   const handleApply = async () => {
     setIsApplyOpen(true);
   };
+
+  useEffect(() => {
+    document.title = `${loan.title} | ARTHI`;
+  }, [loan.title]);
 
   if (isLoading || dbUserLoading) return <LoadingSpinner />;
   if (isError) return <ErrorPage />;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
@@ -42,6 +42,10 @@ const AboutUs = () => {
       description: "Licensed by Bangladesh Bank, 5+ years experience",
     },
   ];
+
+  useEffect(() => {
+    document.title = "ABOUT US | ARTHI";
+  }, []);
 
   return (
     <div className="min-h-screen">

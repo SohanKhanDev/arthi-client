@@ -24,6 +24,10 @@ const PaymentSuccess = () => {
     navigate(`/dashboard/my-loans/${user?.email}`);
   };
 
+  useEffect(() => {
+    document.title = "PAYMENT SUCESSFULL | ARTHI";
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-100">
       <div className="bg-white shadow-lg rounded-xl px-8 py-10 max-w-md w-full text-center">

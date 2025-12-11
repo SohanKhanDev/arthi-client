@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
@@ -29,6 +29,10 @@ const ManageUser = () => {
     },
     enabled: !!user,
   });
+
+  useEffect(() => {
+    document.title = "MANAGE USER | ARTHI";
+  }, []);
 
   if (isLoading || isFetching || authLoading) {
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
@@ -28,6 +28,10 @@ const LoanApplications = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    document.title = "LOAN APPLICATIONS | ARTHI";
+  }, []);
 
   if (isLoading || isFetching) {
     return (

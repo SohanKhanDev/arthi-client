@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
@@ -13,6 +13,9 @@ import { ImSpinner9 } from "react-icons/im";
 import MyBtn from "../../components/Shared/MyBtn";
 
 const Contact = () => {
+  useEffect(() => {
+    document.title = "CONTACT US | ARTHI";
+  }, []);
   return (
     <div className="min-h-screen ">
       {/* Hero Section */}

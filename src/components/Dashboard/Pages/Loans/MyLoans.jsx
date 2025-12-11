@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
@@ -31,6 +31,10 @@ const MyLoans = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    document.title = "MY LOANS | ARTHI";
+  }, []);
 
   if (isLoading || isFetching) {
     return (

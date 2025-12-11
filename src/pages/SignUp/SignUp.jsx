@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/arthi-logo2.png";
 import image from "../../assets/signup-page.jpg";
 import { FcGoogle } from "react-icons/fc";
@@ -112,6 +112,10 @@ const SignUp = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    document.title = "SIGNUP | ARTHI";
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-[#f5f9f5]">

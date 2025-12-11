@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Lottie from "lottie-react";
 import errorpage from "../../assets/404 error page.json";
 import { Link } from "react-router";
@@ -6,6 +6,9 @@ import MyBtn from "../../components/Shared/MyBtn";
 import { HiOutlineHome } from "react-icons/hi";
 
 const ErrorPage = () => {
+  useEffect(() => {
+    document.title = "ERROR | ARTHI";
+  }, []);
   return (
     <div
       className="

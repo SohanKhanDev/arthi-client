@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
@@ -66,6 +66,10 @@ const AddLoan = () => {
       toast.error("Network error or server issue");
     }
   };
+
+  useEffect(() => {
+    document.title = "ADD LOAN | ARTHI";
+  }, []);
 
   return (
     <div className="p-4 sm:p-6 max-w-3xl mx-auto">

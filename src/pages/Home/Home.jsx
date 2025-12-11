@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "../../components/Home/Slider";
 import HowItWorks from "../../components/Home/HowItWorks";
 import TestimonialsSlider from "../../components/Home/TestimonialsSlider";
@@ -7,6 +7,9 @@ import FAQSection from "../../components/Home/FAQSection";
 import HomePageLoan from "../../components/Home/HomePageLoan";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "HOME | ARTHI";
+  }, []);
   return (
     <div>
       <Slider />

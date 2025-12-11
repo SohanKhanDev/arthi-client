@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -31,6 +31,10 @@ const AllLoans = () => {
       return data;
     },
   });
+
+  useEffect(() => {
+    document.title = "ALL LOANS | ARTHI";
+  }, []);
 
   if (isLoading) {
     return (

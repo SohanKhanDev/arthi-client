@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/arthi-logo2.png";
 import image from "../../assets/login.jpg";
 import { FcGoogle } from "react-icons/fc";
@@ -61,6 +61,10 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    document.title = "LOGIN | ARTHI";
+  }, []);
 
   const handleGoogleSignin = async () => {
     setLoading(true);

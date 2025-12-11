@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
@@ -20,7 +20,10 @@ const UserProfile = () => {
       return result.data;
     },
   });
-  console.log(userData);
+
+  useEffect(() => {
+    document.title = "PROFILE | ARTHI";
+  }, []);
 
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <ErrorPage />;

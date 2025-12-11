@@ -71,6 +71,10 @@ const EditProfile = () => {
     }
   };
 
+  useEffect(() => {
+    document.title = "EDIT PROFILE | ARTHI";
+  }, []);
+
   return (
     <div className="min-h-screen flex items-center justify-center px-6 py-16 bg-gray-50">
       <form
