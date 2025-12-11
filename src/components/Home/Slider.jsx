@@ -6,6 +6,7 @@ import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { PiRocketLaunchLight } from "react-icons/pi";
 
 import slider1 from "../../assets/slider1.jpg";
 import slider2 from "../../assets/slider2.jpg";
@@ -72,16 +73,25 @@ const Slider = () => {
             />
 
             <div className="absolute top-1/4 left-6 sm:left-12 md:left-16 lg:left-24 text-left max-w-lg">
-              <h2 className="text-primary text-3xl sm:text-4xl md:text-5xl font-bold drop-shadow-lg">
-                {slide.title}
-              </h2>
+              <h1
+                className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <span className="text-emerald-500"> {slide.title}</span>
+              </h1>
+
               <p className="my-4 text-white text-sm sm:text-base md:text-lg drop-shadow-md">
                 {slide.description}
               </p>
 
-              <Link to="/apply-loan" className="btn btn-primary pt-9">
-                Apply Now
-              </Link>
+              <MyBtn
+                to="/apply-loan"
+                label="Apply Now"
+                size="sm"
+                icon={PiRocketLaunchLight}
+              />
             </div>
           </SwiperSlide>
         ))}

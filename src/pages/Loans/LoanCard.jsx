@@ -1,6 +1,7 @@
 // src/pages/LoanCard.jsx
 import React from "react";
 import { Link } from "react-router";
+import MyBtn from "../../components/Shared/MyBtn";
 
 const LoanCard = ({ loan }) => {
   console.log(loan);
@@ -69,9 +70,14 @@ const LoanCard = ({ loan }) => {
 
         {/* Bottom: button */}
         <div className="mt-6">
-          <Link to={`/loan/${_id}`} className="btn btn-secondary w-full">
-            View details
-          </Link>
+          <MyBtn
+            to={`/loan/${_id}`}
+            label="View details"
+            size="sm"
+            variant="cancel"
+            className="w-full"
+            // icon={PiRocketLaunchLight}
+          />
         </div>
       </div>
     </article>

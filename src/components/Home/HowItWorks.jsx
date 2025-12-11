@@ -69,25 +69,24 @@ const HowItWorks = () => {
     >
       {/* Title Section */}
       <div className="text-center mb-16">
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="text-primary">How </span>
-          <span className="text-secondary">Loan Works</span>
-        </motion.h2>
-        <motion.p
-          className="text-xl text-slate-600 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Get approved quickly with our simple 4-step process
-        </motion.p>
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
+          <motion.h1
+            className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            How <span className="text-emerald-500">Loan Works</span>
+          </motion.h1>
+          <motion.p
+            className="text-xl md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            Get approved quickly with our simple 4-step process
+          </motion.p>
+        </div>
       </div>
 
       {/* Steps */}

@@ -321,7 +321,7 @@ const ApplyLoanModal = ({ isApplyOpen, closeModal, loan }) => {
                 label={"Cancel"}
                 variant="cancel"
                 size="md"
-                className="flex-1"
+                className="flex-1 border-none"
                 // type="submit"
               />
 

@@ -41,35 +41,30 @@ const FAQSection = () => {
   return (
     <div className="py-20 ">
       <div className="max-w-4xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-6"
-            whileHover={{ scale: 1.02 }}
-          >
-            <span className="bg-linear-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
-              Frequently
-            </span>{" "}
-            <span className="bg-linear-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-              Asked Questions
-            </span>
-          </motion.h2>
-          <motion.p
-            className="text-xl text-slate-600 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            Got questions? We've got answers. Everything you need to know before
-            applying.
-          </motion.p>
-        </motion.div>
+        {/* Title Section */}
+        <div className="text-center mb-16">
+          <div className="relative max-w-7xl mx-auto px-6 text-center">
+            <motion.h1
+              className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Frequently{" "}
+              <span className="text-emerald-500">Asked Questions</span>
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              {" "}
+              Got questions? We've got answers. Everything you need to know
+              before applying.
+            </motion.p>
+          </div>
+        </div>
 
         {/* FAQ List */}
         <div className="space-y-4">

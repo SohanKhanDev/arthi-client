@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 const MyBtn = ({
   label,
   onClick,
@@ -6,11 +8,25 @@ const MyBtn = ({
   size = "lg",
   icon: Icon,
   className = "",
+  to,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    if (disabled) return;
+
+    if (to) {
+      navigate(to);
+      return;
+    }
+
+    if (onClick) onClick(e);
+  };
+
   return (
     <button
       disabled={disabled}
-      onClick={onClick}
+      onClick={handleClick}
       className={`
         relative group overflow-hidden flex-1
         disabled:opacity-70 disabled:cursor-not-allowed
@@ -23,10 +39,8 @@ const MyBtn = ({
         ${className}
       `}
     >
-      {/* Shine effect */}
       <div className="absolute inset-0 bg-linear-to-r from-white/20 to-transparent -skew-x-12 -translate-x-[120%] group-hover:translate-x-[120%] transition-transform duration-1000" />
 
-      {/* Content */}
       <span className="relative z-10 flex items-center">
         {Icon && (
           <Icon
@@ -40,7 +54,6 @@ const MyBtn = ({
   );
 };
 
-// Variant styles
 const getVariantStyles = (variant) => {
   switch (variant) {
     case "primary":
@@ -56,7 +69,6 @@ const getVariantStyles = (variant) => {
   }
 };
 
-// Size styles
 const getSizeStyles = (size) => {
   switch (size) {
     case "sm":

@@ -41,24 +41,29 @@ const WhyChooseUs = () => {
     <div className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Title Section */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            <span className="bg-linear-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
-              Why Choose
-            </span>{" "}
-            <span className="text-slate-800">Our Loan Service?</span>
-          </h2>
-          <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
-            Thousands of customers trust us to provide fast, secure, and
-            affordable financial solutions.
-          </p>
-        </motion.div>
+        <div className="text-center mb-16">
+          <div className="relative max-w-7xl mx-auto px-6 text-center">
+            <motion.h1
+              className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              Why Choose{" "}
+              <span className="text-emerald-500">Our Loan Service?</span>
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              {" "}
+              Thousands of customers trust us to provide fast, secure, and
+              affordable financial solutions.
+            </motion.p>
+          </div>
+        </div>
 
         {/* Feature Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

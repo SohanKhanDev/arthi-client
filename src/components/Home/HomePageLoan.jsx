@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-
+import { PiRocketLaunchLight } from "react-icons/pi";
 import { Link } from "react-router";
 import Marquee from "react-fast-marquee";
 import LoanCard from "../../pages/Loans/LoanCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import MyBtn from "../Shared/MyBtn";
 
 const HomePageLoan = () => {
   const [loans, setLoans] = useState([]);
@@ -29,27 +30,26 @@ const HomePageLoan = () => {
     <section className="my-20 container mx-auto px-4 sm:px-6 lg:px-8">
       {/* Title Section */}
       <div className="text-center mb-16">
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="text-primary">Explore </span>
-          <span className="text-secondary">Our Loans</span>
-        </motion.h2>
-        <motion.p
-          className="text-xl text-slate-600 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          Choose from our popular loan products designed for car, home,
-          education, farming, and wedding needs. Quick approval, competitive
-          rates, and flexible repayment options available.
-        </motion.p>
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
+          <motion.h1
+            className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            Explore <span className="text-emerald-500">Our Loans</span>
+          </motion.h1>
+          <motion.p
+            className="text-xl md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            Choose from our popular loan products designed for car, home,
+            education, farming, and wedding needs. Quick approval, competitive
+            rates, and flexible repayment options available.
+          </motion.p>
+        </div>
       </div>
 
       {/* ----------*** :: LOANS CONTENT :: ***---------- */}
@@ -78,13 +78,13 @@ const HomePageLoan = () => {
           </div>
 
           {/* View All Button */}
-          <div className="flex justify-center mt-12">
-            <Link
+          <div className="w-fit mx-auto mt-12">
+            <MyBtn
               to="/all-loans"
-              className="inline-block bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg shadow-lg hover:opacity-90 transition-all duration-300"
-            >
-              View All Loans
-            </Link>
+              label="View All Loans"
+              size="md"
+              // icon={PiRocketLaunchLight}
+            />
           </div>
         </>
       ) : (
@@ -93,12 +93,12 @@ const HomePageLoan = () => {
           <p className="text-lg sm:text-xl text-gray-600 font-semibold mb-6">
             💰 Checking for loan products...
           </p>
-          <Link
-            to="/loan-application"
-            className="inline-block bg-primary text-white px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-all duration-300 shadow-lg"
-          >
-            Apply for Loan Directly
-          </Link>
+          <MyBtn
+            to="/apply-loan"
+            label="Apply for Loan Directly"
+            size="sm"
+            icon={PiRocketLaunchLight}
+          />
         </div>
       )}
     </section>

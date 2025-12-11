@@ -4,6 +4,7 @@ import logo from "../../assets/arthi-logo.png";
 import defaultProfilePhoto from "../../assets/profilePhoto.jpg";
 import Switch from "./Switch";
 import useAuth from "../../hooks/useAuth";
+import MyBtn from "./MyBtn";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -61,7 +62,6 @@ const Navbar = () => {
             </Link>
           )}
 
-          <Switch></Switch>
           <div className="dropdown dropdown-end lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost">
               <svg
@@ -120,21 +120,39 @@ const Navbar = () => {
           </div>
 
           {user ? (
-            <NavLink
-              onClick={() => logOut()}
-              className="btn btn-primary hidden lg:flex"
-            >
-              Logout
-            </NavLink>
+            <div className="flex">
+              <MyBtn
+                // to="/signup"
+                onClick={() => logOut()}
+                // disabled
+                label="Logout"
+                size="sm"
+                variant="primary"
+                className=""
+                // icon={FaHandsClapping}
+              />
+            </div>
           ) : (
             <div className=" flex gap-2">
-              <NavLink to="/login" className="btn btn-primary hidden lg:flex">
-                Login
-              </NavLink>
+              <MyBtn
+                to="/login"
+                // disabled
+                label="Login"
+                size="sm"
+                variant="primary"
+                className=""
+                // icon={FaHandsClapping}
+              />
 
-              <NavLink to="/signup" className="btn btn-primary hidden lg:flex">
-                Register
-              </NavLink>
+              <MyBtn
+                to="/signup"
+                // disabled
+                label="Register"
+                size="sm"
+                variant="primary"
+                className=""
+                // icon={FaHandsClapping}
+              />
             </div>
           )}
         </div>

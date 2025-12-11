@@ -10,6 +10,7 @@ import { useForm, Controller } from "react-hook-form";
 import { imageupload, saveOrUpdateUser } from "../../utils";
 import { ImSpinner9 } from "react-icons/im";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import MyBtn from "../../components/Shared/MyBtn";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -288,17 +289,23 @@ const SignUp = () => {
                 </div>
               </div>
 
-              <button
+              <MyBtn
+                // to="/all-loans"
+                // onClick={handleApply}
                 type="submit"
-                className="btn btn-primary w-full"
                 disabled={loading}
-              >
-                {loading ? (
-                  <ImSpinner9 className="animate-spin m-auto" />
-                ) : (
-                  "Continue"
-                )}
-              </button>
+                label={
+                  loading ? (
+                    <ImSpinner9 className="animate-spin m-auto" />
+                  ) : (
+                    "Signup"
+                  )
+                }
+                size="md"
+                variant="primary"
+                className="w-full border-none"
+                // icon={FaHandsClapping}
+              />
             </form>
 
             {/* OR DIVIDER */}
@@ -309,23 +316,28 @@ const SignUp = () => {
             </div>
 
             {/* GOOGLE SIGNIN */}
-            <button
+            <MyBtn
+              // to="/all-loans"
               onClick={handleGoogleSignin}
-              type="button"
-              className="flex items-center justify-center w-full py-2.5 rounded-4xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors shadow-sm"
+              // type="submit"
               disabled={loading}
-            >
-              {loading ? (
-                <ImSpinner9 className="animate-spin m-auto" />
-              ) : (
-                <div className="flex items-center">
-                  <FcGoogle size={24} className="mr-3" />
-                  <span className="font-medium text-sm">
-                    Sign in with Google
-                  </span>
-                </div>
-              )}
-            </button>
+              label={
+                loading ? (
+                  <ImSpinner9 className="animate-spin m-auto" />
+                ) : (
+                  <div className="flex items-center">
+                    <FcGoogle size={24} className="mr-3" />
+                    <span className="font-medium text-sm">
+                      Sign in with Google
+                    </span>
+                  </div>
+                )
+              }
+              size="md"
+              variant="cancel"
+              className="w-full border-none"
+              // icon={FcGoogle}
+            />
 
             {/* LOGIN LINK */}
             <div className="text-center mt-6">

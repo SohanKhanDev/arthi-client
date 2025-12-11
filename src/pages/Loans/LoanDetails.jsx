@@ -7,6 +7,9 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import { ImSpinner9 } from "react-icons/im";
 import useDBUser from "../../hooks/usedbUser";
 import ApplyLoanModal from "./ApplyLoanModal";
+import MyBtn from "../../components/Shared/MyBtn";
+import { FaRegArrowAltCircleLeft } from "react-icons/fa";
+import { FaHandsClapping } from "react-icons/fa6";
 
 const LoanDetails = () => {
   const { id } = useParams();
@@ -34,7 +37,7 @@ const LoanDetails = () => {
   if (isError) return <ErrorPage />;
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-emerald-50/30 to-teal-50 py-16 px-6">
+    <div className="min-h-screen  py-16 px-6">
       {/* Hero Section */}
       <div className=" mx-auto mb-16">
         <div className="group relative overflow-hidden rounded-4xl shadow-2xl bg-slate-900 text-white aspect-video lg:aspect-2/1">
@@ -125,7 +128,7 @@ const LoanDetails = () => {
           </div>
 
           {/* Required Documents */}
-          <div className="p-8 rounded-3xl bg-linear-to-r from-slate-900/10 to-slate-800/10 backdrop-blur-xl border border-slate-200/50 shadow-2xl">
+          <div className="p-8 rounded-3xl  backdrop-blur-xl border border-slate-200/50 shadow-2xl">
             <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center">
               <span className="w-10 h-10 bg-linear-to-r from-slate-500 to-slate-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg text-white">
                 📋
@@ -180,31 +183,38 @@ const LoanDetails = () => {
             </div>
 
             {dbUser?.role === "borrower" ? (
-              <button
+              <MyBtn
+                // to="/all-loans"
                 onClick={handleApply}
-                className="w-full btn btn-secondary h-13 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <>
-                  <span className="flex items-center justify-center">
-                    🚀 Apply Now
-                  </span>
-                </>
-              </button>
+                // disabled
+                label="Apply Now"
+                size="md"
+                variant="cancel"
+                className="w-full border-none"
+                icon={FaHandsClapping}
+              />
             ) : (
-              <button
+              <MyBtn
+                // to="/all-loans"
                 disabled
-                className="w-full btn btn-secondary h-13 bg-linear-to-r from-slate-400 to-slate-500 text-slate-700 cursor-not-allowed opacity-60 shadow-lg"
-                title="Only borrowers can apply for loans"
-              >
-                Apply Now (Borrower Only)
-              </button>
+                label="Apply Now (Borrower Only)"
+                size="md"
+                variant="cancel"
+                className="w-full border-none"
+                icon={FaHandsClapping}
+              />
             )}
           </div>
 
           {/* Back Button */}
-          <Link to="/all-loans" className="btn btn-primary h-13 w-full">
-            ← Back to Loans
-          </Link>
+          <MyBtn
+            to="/all-loans"
+            label="Back to Loans"
+            size="md"
+            variant="cancel"
+            className="w-full border-none"
+            icon={FaRegArrowAltCircleLeft}
+          />
 
           <ApplyLoanModal
             isApplyOpen={isApplyOpen}
