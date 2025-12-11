@@ -25,6 +25,11 @@ import LoanDetails from "../pages/Loans/LoanDetails";
 import PaymentSucess from "../components/Dashboard/Pages/Payment/PaymentSucess";
 import LoanApplications from "../components/Dashboard/Pages/Loans/LoanApplications";
 import ApplyLoan from "../pages/Loans/ApplyLoan";
+import PrivateRouteProvider from "../providers/PrivateRouteProvider";
+import AdminRoute from "../providers/AdminRoute";
+import ManagerRoute from "../providers/ManagerRoute";
+import BorrowerMenu from "../components/Dashboard/Sidebar/Menu/BorrowerMenu";
+import BorrowerRoute from "../providers/BorrowerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -40,14 +45,35 @@ export const router = createBrowserRouter([
 
       { path: "/all-loans", element: <AllLoans /> },
       { path: "/apply-loan", element: <ApplyLoan /> },
-      { path: "/loan/:id", element: <LoanDetails /> },
+      {
+        path: "/loan/:id",
+        element: (
+          <PrivateRouteProvider>
+            <LoanDetails />
+          </PrivateRouteProvider>
+        ),
+      },
 
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <SignUp /> },
       { path: "/signup-pending", element: <SignupPending /> },
 
-      { path: "/user-profile/:email", element: <UserProfile /> },
-      { path: "/edit-profile", element: <EditProfile /> },
+      {
+        path: "/user-profile/:email",
+        element: (
+          <PrivateRouteProvider>
+            <UserProfile />
+          </PrivateRouteProvider>
+        ),
+      },
+      {
+        path: "/edit-profile",
+        element: (
+          <PrivateRouteProvider>
+            <EditProfile />
+          </PrivateRouteProvider>
+        ),
+      },
     ],
   },
   {
@@ -56,22 +82,109 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     hydrateFallbackElement: <LoadingSpinner />,
     children: [
-      { path: "/dashboard/user-profile", element: <Profile /> },
-
-      { path: "/dashboard/manage-users", element: <ManageUser /> },
-      { path: "/dashboard/all-loan", element: <AllLoanManage /> },
-      { path: "/dashboard/loan-applications", element: <LoanApplications /> },
       {
-        path: "/dashboard/loan-applications/sucess-payment",
-        element: <PaymentSucess />,
+        path: "/dashboard/user-profile",
+        element: (
+          <PrivateRouteProvider>
+            <Profile />
+          </PrivateRouteProvider>
+        ),
       },
 
-      { path: "/dashboard/add-loan", element: <AddLoan /> },
-      { path: "/dashboard/manage-loans", element: <ManageLoans /> },
-      { path: "/dashboard/pending-loans", element: <PendingApplications /> },
-      { path: "/dashboard/approved-loans", element: <ApprovedApplications /> },
+      //LINK - admin route
+      {
+        path: "/dashboard/manage-users",
+        element: (
+          <PrivateRouteProvider>
+            <AdminRoute>
+              <ManageUser />
+            </AdminRoute>
+          </PrivateRouteProvider>
+        ),
+      },
+      {
+        path: "/dashboard/all-loan",
+        element: (
+          <PrivateRouteProvider>
+            <AdminRoute>
+              <AllLoanManage />
+            </AdminRoute>
+          </PrivateRouteProvider>
+        ),
+      },
+      {
+        path: "/dashboard/loan-applications",
+        element: (
+          <PrivateRouteProvider>
+            <AdminRoute>
+              <LoanApplications />
+            </AdminRoute>
+          </PrivateRouteProvider>
+        ),
+      },
 
-      { path: "/dashboard/my-loans/:email", element: <MyLoans /> },
+      //LINK - manager route
+      {
+        path: "/dashboard/add-loan",
+        element: (
+          <PrivateRouteProvider>
+            <ManagerRoute>
+              <AddLoan />
+            </ManagerRoute>
+          </PrivateRouteProvider>
+        ),
+      },
+      {
+        path: "/dashboard/manage-loans",
+        element: (
+          <PrivateRouteProvider>
+            <ManagerRoute>
+              <ManageLoans />
+            </ManagerRoute>
+          </PrivateRouteProvider>
+        ),
+      },
+      {
+        path: "/dashboard/pending-loans",
+        element: (
+          <PrivateRouteProvider>
+            <ManagerRoute>
+              <PendingApplications />
+            </ManagerRoute>
+          </PrivateRouteProvider>
+        ),
+      },
+      {
+        path: "/dashboard/approved-loans",
+        element: (
+          <PrivateRouteProvider>
+            <ManagerRoute>
+              <ApprovedApplications />
+            </ManagerRoute>
+          </PrivateRouteProvider>
+        ),
+      },
+
+      //LINK - borrower route
+      {
+        path: "/dashboard/my-loans/:email",
+        element: (
+          <PrivateRouteProvider>
+            <BorrowerRoute>
+              <MyLoans />
+            </BorrowerRoute>
+          </PrivateRouteProvider>
+        ),
+      },
+
+      {
+        path: "/dashboard/loan-applications/sucess-payment",
+        element: (
+          <PrivateRouteProvider>
+            <PaymentSucess />
+          </PrivateRouteProvider>
+        ),
+      },
     ],
   },
 ]);

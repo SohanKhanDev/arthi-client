@@ -20,7 +20,7 @@ const useDBUser = () => {
     },
   });
 
-  const isLoading = authLoading || queryLoading || isFetching;
+  const isLoading = queryLoading;
 
   return { dbUser, isLoading };
 };

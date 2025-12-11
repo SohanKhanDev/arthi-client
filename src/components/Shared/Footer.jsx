@@ -14,13 +14,13 @@ import { FaXTwitter } from "react-icons/fa6";
 const footerLinks = [
   { title: "Home", path: "/" },
   { title: "All Loans", path: "/all-loans" },
-  { title: "My Posts", path: "/myposts" },
+  { title: "Loan Application", path: "/apply-loan" },
   { title: "Profile", path: "/profile" },
 ];
 
 const legalLinks = [
-  { title: "Terms of Service", path: "" },
-  { title: "Privacy Policy", path: "" },
+  { title: "About Us", path: "/about-us" },
+  { title: "Contact Us", path: "/contact" },
   { title: "Sitemap", path: "" },
 ];
 
@@ -34,32 +34,34 @@ const Footer = () => {
             <Link to="/">
               <img
                 src={logo}
-                alt="Ankur Logo"
+                alt="Arthi Logo"
                 className="mx-auto sm:mx-0 w-32 h-auto object-contain"
               />
             </Link>
             <p className="text-sm text-gray-400 max-w-sm mx-auto sm:mx-0">
-              Ankur connects the agricultural community—farmers, traders, and
-              consumers—in one digital space for efficient commerce and
-              communication.
+              Arthi is a web-based microloan request, review & approval
+              management system. Many small financial organizations, NGOs, and
+              microloan providers struggle to maintain loan applications,
+              verification, approvals, EMI schedules, and repayments in one
+              streamlined system.
             </p>
 
             <div className="flex justify-center sm:justify-start space-x-4 pt-2">
               <a
                 href="#"
-                className="text-[#e67a37] hover:text-[#e67a37] transition-colors duration-300"
+                className="text-primary transition-colors duration-300"
               >
                 <FaFacebookF size={20} />
               </a>
               <a
                 href="#"
-                className="text-[#e67a37] hover:text-[#e67a37] transition-colors duration-300"
+                className="text-primary transition-colors duration-300"
               >
                 <FaXTwitter size={20} />
               </a>
               <a
                 href="#"
-                className="text-[#e67a37] hover:text-[#e67a37] transition-colors duration-300"
+                className="text-primary transition-colors duration-300"
               >
                 <FaInstagram size={20} />
               </a>
@@ -68,7 +70,7 @@ const Footer = () => {
 
           {/* ----------*** :: QUICK LINKS :: ***---------- */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-[#e67a37] inline-block pb-1">
+            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-primary inline-block pb-1">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -76,7 +78,7 @@ const Footer = () => {
                 <li key={link.title}>
                   <Link
                     to={link.path}
-                    className="text-sm text-gray-400 hover:text-[#e67a37] transition-colors duration-300"
+                    className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
                   >
                     {link.title}
                   </Link>
@@ -87,7 +89,7 @@ const Footer = () => {
 
           {/* ----------*** :: RESOURCES :: ***---------- */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-[#e67a37] inline-block pb-1">
+            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-primary inline-block pb-1">
               Resources
             </h4>
             <ul className="space-y-2">
@@ -95,7 +97,7 @@ const Footer = () => {
                 <li key={link.title}>
                   <Link
                     to={link.path}
-                    className="text-sm text-gray-400 hover:text-[#e67a37] transition-colors duration-300"
+                    className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
                   >
                     {link.title}
                   </Link>
@@ -104,7 +106,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/help"
-                  className="text-sm text-gray-400 hover:text-[#e67a37] transition-colors duration-300"
+                  className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
                 >
                   Help Center
                 </Link>
@@ -114,30 +116,30 @@ const Footer = () => {
 
           {/* ----------*** :: CONTACT US :: ***---------- */}
           <div className="col-span-1">
-            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-[#e67a37] inline-block pb-1">
+            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-primary inline-block pb-1">
               Contact Us
             </h4>
             <ul className="space-y-3">
               <li className="flex items-center justify-center sm:justify-start">
-                <FaEnvelope className="text-[#e67a37] mr-3" />
+                <FaEnvelope className="text-secondary mr-3" />
                 <a
                   href="mailto:support@ankur.com"
-                  className="text-sm text-gray-400 hover:text-[#e67a37] transition-colors duration-300"
+                  className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
                 >
-                  support@ankur.com
+                  support@arthi.com
                 </a>
               </li>
               <li className="flex items-center justify-center sm:justify-start">
-                <FaPhoneAlt className="text-[#e67a37] mr-3" />
+                <FaPhoneAlt className="text-secondary mr-3" />
                 <a
                   href="tel:+1234567890"
-                  className="text-sm text-gray-400 hover:text-[#e67a37] transition-colors duration-300"
+                  className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
                 >
-                  123 456-7890
+                  +880 9612-345678
                 </a>
               </li>
               <li className="text-sm text-gray-400 text-center sm:text-left">
-                House: 2/C/2, Road: 01, Shyamoli, Dhaka
+                House #12, Road #5 Dhanmondi, Dhaka-1205
               </li>
             </ul>
           </div>
@@ -145,7 +147,7 @@ const Footer = () => {
 
         {/* ----------*** :: BTN => COPYRIGHT :: ***---------- */}
         <div className="pt-6 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Ankur. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Arthi. All rights reserved.</p>
         </div>
       </div>
     </footer>

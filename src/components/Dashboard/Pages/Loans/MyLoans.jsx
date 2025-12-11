@@ -48,7 +48,9 @@ const MyLoans = () => {
     <>
       <div className="p-6 max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2">My Loans</h1>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2  dark:text-white">
+            My Loans
+          </h1>
         </div>
 
         <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">

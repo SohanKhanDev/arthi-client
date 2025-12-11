@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import LoadingSpinner from "../../../Shared/LoadingSpinner";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { imageupload } from "../../../../utils";
 import MyBtn from "../../../Shared/MyBtn";
-import { MdCancel } from "react-icons/md";
 
 const AddLoan = () => {
   const axiosSecure = useAxiosSecure();
@@ -73,7 +71,7 @@ const AddLoan = () => {
 
   return (
     <div className="p-4 sm:p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 text-center">
+      <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 text-center  dark:text-white">
         Add New Loan
       </h1>
 

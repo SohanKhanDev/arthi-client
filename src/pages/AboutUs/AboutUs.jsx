@@ -54,7 +54,7 @@ const AboutUs = () => {
         <div className="absolute inset-0 bg-linear-to-r from-emerald-500/10 to-teal-500/10" />
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent"
+            className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent dark:text-white"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -62,7 +62,7 @@ const AboutUs = () => {
             About <span className="text-emerald-500">Arthi</span>
           </motion.h1>
           <motion.p
-            className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-12 leading-relaxed"
+            className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-12 leading-relaxed dark:text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -77,7 +77,7 @@ const AboutUs = () => {
             transition={{ delay: 0.6, duration: 0.5 }}
           >
             <FaCheckCircle className="text-2xl text-emerald-500" />
-            <span className="text-lg font-semibold text-slate-800">
+            <span className="text-lg font-semibold text-slate-800 ">
               Licensed by Bangladesh Bank
             </span>
           </motion.div>
@@ -116,10 +116,10 @@ const AboutUs = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-linear-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-linear-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:text-white">
                 Our Story
               </h2>
-              <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+              <p className="text-xl text-slate-600 mb-8 leading-relaxed dark:text-white">
                 Founded in 2020, Arthi revolutionized loan processing in
                 Bangladesh. What started as a simple idea to make loans
                 accessible to every Bangladeshi has grown into the nation's most
@@ -127,26 +127,26 @@ const AboutUs = () => {
               </p>
               <div className="space-y-4 mb-8">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center shrink-0 mt-1">
                     <span className="text-white font-bold">✓</span>
                   </div>
-                  <span className="text-lg text-slate-700">
+                  <span className="text-lg text-slate-700 dark:text-white">
                     Fully digital, paperless process
                   </span>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center shrink-0 mt-1">
                     <span className="text-white font-bold">✓</span>
                   </div>
-                  <span className="text-lg text-slate-700">
+                  <span className="text-lg text-slate-700 dark:text-white">
                     Licensed by Bangladesh Bank
                   </span>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center shrink-0 mt-1">
                     <span className="text-white font-bold">✓</span>
                   </div>
-                  <span className="text-lg text-slate-700">
+                  <span className="text-lg text-slate-700 dark:text-white">
                     500+ Crore disbursed
                   </span>
                 </div>
@@ -159,7 +159,7 @@ const AboutUs = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-4xl p-12 shadow-2xl">
+              <div className="bg-linear-to-br from-emerald-500 to-teal-600 rounded-4xl p-12 shadow-2xl">
                 <div className="text-6xl font-black text-white mb-6">2020</div>
                 <div className="text-2xl font-bold text-white/90">Founded</div>
                 <div className="w-full bg-white/20 h-1 rounded-full mt-4">
@@ -180,7 +180,7 @@ const AboutUs = () => {
               <span className="bg-linear-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
                 Why Trust
               </span>{" "}
-              <span className="text-slate-800">Arthi?</span>
+              <span className="text-slate-800 ">Arthi?</span>
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

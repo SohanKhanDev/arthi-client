@@ -61,30 +61,11 @@ const Sidebar = () => {
 
       {/* Full Height Sidebar */}
       <div
-        className={`fixed inset-0 z-40 w-72 h-screen bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl shadow-2xl transform transition-all duration-500 ease-in-out border-r border-slate-700/50 ${
+        className={`fixed pt-4  inset-0 z-40 w-72 h-screen bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl shadow-2xl transform transition-all duration-500 ease-in-out border-r border-slate-700/50 ${
           isActive ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:z-auto overflow-hidden`}
       >
-        {/* Sidebar Scroll Container */}
         <div className="h-full flex flex-col overflow-hidden">
-          {/* Sidebar Header */}
-          {/* <div className="p-6 border-b border-slate-700/50 shrink-0">
-            <Link to="/" className="flex items-center space-x-3 mb-2">
-              <div className=" rounded-2xl shadow-lg flex items-center justify-center">
-                <img src={logo} alt="logo" className="w-16 h-16" />
-              </div>
-              <div>
-                <h2 className="text-xl font-bold bg-linear-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent leading-tight">
-                  Arthi Dashboard
-                </h2>
-                <p className="text-slate-400 text-sm truncate max-w-[140px]">
-                  {user?.displayName}
-                </p>
-              </div>
-            </Link>
-          </div> */}
-
-          {/* Navigation Menu - Scrollable */}
           <nav className="flex-1 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800 ">
             {/* Role-Based Menus */}
             <div className=" space-y-1">

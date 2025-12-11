@@ -1,126 +1,128 @@
 import React from "react";
 import styled from "styled-components";
+import { WiDaySunny, WiNightAltCloudy } from "react-icons/wi";
 
-const Switch = () => {
+const Switch = ({ checked, onChange }) => {
   return (
-    <StyledWrapper>
-      <label className="switch">
-        <input defaultChecked="true" id="checkbox" type="checkbox" />
-        <span className="slider">
-          <div className="star star_1" />
-          <div className="star star_2" />
-          <div className="star star_3" />
-          <svg viewBox="0 0 16 16" className="cloud_1 cloud">
-            <path
-              transform="matrix(.77976 0 0 .78395-299.99-418.63)"
-              fill="#fff"
-              d="m391.84 540.91c-.421-.329-.949-.524-1.523-.524-1.351 0-2.451 1.084-2.485 2.435-1.395.526-2.388 1.88-2.388 3.466 0 1.874 1.385 3.423 3.182 3.667v.034h12.73v-.006c1.775-.104 3.182-1.584 3.182-3.395 0-1.747-1.309-3.186-2.994-3.379.007-.106.011-.214.011-.322 0-2.707-2.271-4.901-5.072-4.901-2.073 0-3.856 1.202-4.643 2.925"
-            />
-          </svg>
-        </span>
+    <StyledSwitch>
+      <input
+        id="theme-toggle"
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+      />
+      <label htmlFor="theme-toggle">
+        <WiDaySunny className="sun" />
+        <WiNightAltCloudy className="moon" />
+        <div className="track"></div>
+        <div className="knob"></div>
       </label>
-    </StyledWrapper>
+    </StyledSwitch>
   );
 };
 
-const StyledWrapper = styled.div`
-  .switch {
-    font-size: 17px;
+const StyledSwitch = styled.div`
+  input {
+    display: none;
+  }
+
+  label {
     position: relative;
-    display: inline-block;
-    width: 4em;
-    height: 2.2em;
-    border-radius: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-
-  /* 🔥 Small Screen Scaling */
-  @media (max-width: 640px) {
-    .switch {
-      transform: scale(0.75); /* 75% size on small screens */
-      transform-origin: left center; /* optional adjustment */
-    }
-  }
-
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #2a2a2a;
-    transition: 0.4s;
-    border-radius: 30px;
-    overflow: hidden;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 1.2em;
-    width: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
-    left: 0.5em;
-    bottom: 0.5em;
-    transition: 0.4s ease;
-    box-shadow: inset 8px -4px 0px 0px #fff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    padding: 0 12px;
+    box-shadow: 
+      0 8px 32px rgba(0,0,0,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .switch input:checked + .slider {
-    background-color: #00a6ff;
+  input:checked + label {
+    background: rgba(74, 108, 247, 0.3);
+    border-color: rgba(74, 108, 247, 0.5);
+    box-shadow: 
+      0 8px 32px rgba(74, 108, 247, 0.2),
+      inset 0 1px 0 rgba(255,255,255,0.3);
   }
 
-  .switch input:checked + .slider:before {
-    transform: translateX(1.8em);
-    box-shadow: inset 15px -4px 0px 15px #ffcf48;
+  .sun, .moon {
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 2;
   }
 
-  .star {
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    transition: all 0.4s;
+  .sun {
+    color: #fbbf24;
+    opacity: checked ? 1 : 0.4;
   }
 
-  .star_1 {
-    left: 2.5em;
-    top: 0.5em;
-  }
-  .star_2 {
-    left: 2.2em;
-    top: 1.2em;
-  }
-  .star_3 {
-    left: 3em;
-    top: 0.9em;
+  .moon {
+    color: #cbd5e1;
+    opacity: checked ? 0.4 : 1;
   }
 
-  .switch input:checked ~ .slider .star {
-    opacity: 0;
-  }
-
-  .cloud {
-    width: 3.5em;
-    position: absolute;
-    bottom: -1.4em;
-    left: -1.1em;
-    opacity: 0;
-    transition: all 0.4s;
-  }
-
-  .switch input:checked ~ .slider .cloud {
+  input:checked + label .sun {
     opacity: 1;
+  }
+
+  input:checked + label .moon {
+    opacity: 0.4;
+  }
+
+  .track {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 46px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  input:checked + label .track {
+    background: rgba(74, 108, 247, 0.8);
+    opacity: 1;
+  }
+
+  .knob {
+    position: absolute;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+      0 4px 16px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.8);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  input:checked + label .knob {
+    right: 42px;
+    background: rgba(74, 108, 247, 0.9);
+    box-shadow: 
+      0 4px 16px rgba(74, 108, 247, 0.3),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+
+  label:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(255,255,255,0.3);
   }
 `;
 

@@ -40,7 +40,7 @@ const SignupPending = () => {
         {/* Button */}
         <Link
           to="/login"
-          className="block w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-6 rounded-xl text-center transition-all duration-200 flex items-center justify-center gap-2 text-sm"
+          className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-6 rounded-xl text-center transition-all duration-200 flex items-center justify-center gap-2 text-sm"
         >
           Check Login ({timeLeft}s)
         </Link>

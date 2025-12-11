@@ -59,6 +59,8 @@ const cardVariants = {
 };
 
 const HowItWorks = () => {
+  const theme = localStorage.getItem("theme") || "light";
+  console.log(theme);
   return (
     <motion.div
       className="mx-auto px-6 py-12"
@@ -71,7 +73,7 @@ const HowItWorks = () => {
       <div className="text-center mb-16">
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.h1
-            className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent"
+            className="text-4xl md:text-4xl lg:text-6xl font-black mb-6 bg-linear-to-r from-slate-900 via-slate-800 to-emerald-600 bg-clip-text text-transparent dark:text-white"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -79,7 +81,7 @@ const HowItWorks = () => {
             How <span className="text-emerald-500">Loan Works</span>
           </motion.h1>
           <motion.p
-            className="text-xl md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-xl md:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed dark:text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -102,10 +104,10 @@ const HowItWorks = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <div className="mx-auto">{step.icon}</div>
-            <h3 className="text-xl font-semibold text-slate-900 mb-3">
+            <h3 className="text-xl font-semibold text-slate-900 mb-3 ">
               {step.title}
             </h3>
-            <p className="text-slate-600 text-sm leading-relaxed">
+            <p className="text-slate-600 text-sm leading-relaxed ">
               {step.description}
             </p>
           </motion.div>

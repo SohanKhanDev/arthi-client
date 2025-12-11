@@ -52,7 +52,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 to-emerald-50 py-12 px-6 flex justify-center">
+    <div className="min-h-screen py-12 px-6 flex justify-center">
       {" "}
       <div className="max-w-2xl mx-auto">
         <div className="relative group">

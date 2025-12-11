@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import MyBtn from "../../components/Shared/MyBtn";
 
 const UserProfile = () => {
   const axiosSecure = useAxiosSecure();
@@ -87,12 +88,23 @@ const UserProfile = () => {
 
             {/* Buttons */}
             <div className="flex justify-between gap-2 pt-4">
-              <Link to={`/edit-profile`} className="btn btn-secondary w-1/2">
-                Edit Profile
-              </Link>
-              <Link to="/dashboard" className="w-1/2 btn btn-primary">
-                Dashboard
-              </Link>
+              <MyBtn
+                to={`/edit-profile`}
+                label="Edit Profile"
+                size="md"
+                variant="primary"
+                className="w-full border-none"
+                // icon={FaRegArrowAltCircleLeft}
+              />
+
+              <MyBtn
+                to={`/dashboard`}
+                label="Dashboard"
+                size="md"
+                variant="cancel"
+                className="w-full border-none"
+                // icon={FaRegArrowAltCircleLeft}
+              />
             </div>
           </div>
         </div>

@@ -1,13 +1,16 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/arthi-logo.png";
+import darklogo from "../../assets/dark-logo.png";
 import defaultProfilePhoto from "../../assets/profilePhoto.jpg";
-import Switch from "./Switch";
 import useAuth from "../../hooks/useAuth";
 import MyBtn from "./MyBtn";
+import useTheme from "../../hooks/useTheme";
+import ToggleButton from "../UI/ToggleButton/ToggleButton";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   const publicLinks = [
     { id: 1, title: "Home", path: "/" },
@@ -27,14 +30,18 @@ const Navbar = () => {
   //LINK - active nav link
   const getNavLinkClass = ({ isActive }) =>
     isActive
-      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full shadow-sm"
-      : "text-gray-600 hover:text-primary hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300";
+      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full shadow-sm dark:text-white"
+      : "text-gray-600 hover:text-primary hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300 dark:text-white";
 
   return (
     <div className="bg-base-100 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 md:px-0 flex items-center h-20">
         <div className="flex-1 navbar-start">
-          <img src={logo} alt="Logo" className="w-[170px]" />
+          <img
+            src={theme === "dark" ? darklogo : logo}
+            alt="Logo"
+            className="w-[170px]"
+          />
         </div>
         <div className="flex-1 navbar-center hidden lg:flex justify-center">
           <ul className="menu menu-horizontal gap-6">
@@ -118,6 +125,8 @@ const Navbar = () => {
               )}
             </ul>
           </div>
+
+          <ToggleButton theme={theme} toggleTheme={toggleTheme} />
 
           {user ? (
             <div className="flex">

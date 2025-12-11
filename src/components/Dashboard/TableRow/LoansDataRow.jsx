@@ -1,5 +1,4 @@
 import React from "react";
-import { RxEyeOpen } from "react-icons/rx";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import ReportBtn from "../../Shared/ReportBtn";
 import { FiEdit } from "react-icons/fi";
@@ -96,14 +95,14 @@ const LoansDataRow = ({ loan, onOpenDelete, onEditOpen, onToggleHome }) => {
             // children="Delete"
           />
 
-          {dbUser.role === "admin" && (
+          {/* {dbUser.role === "admin" && (
             <ReportBtn
               onClick={() => onToggleHome(loan._id, !loan.showOnHome)}
               icon={loan.showOnHome ? TbHome2 : TbHomeOff}
               color={loan.showOnHome ? "green" : "blue"}
               title={loan.showOnHome ? "Remove from Home" : "Add to Home"}
             />
-          )}
+          )} */}
         </div>
       </td>
     </tr>

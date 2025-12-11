@@ -3,6 +3,7 @@ import Navbar from "../components/Shared/Navbar";
 import Footer from "../components/Shared/Footer";
 import { Outlet } from "react-router";
 import MyContainer from "../containers/MyContainer";
+import { ThemeProvider } from "styled-components";
 
 const RootLayout = () => {
   return (

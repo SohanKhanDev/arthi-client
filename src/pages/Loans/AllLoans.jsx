@@ -50,7 +50,7 @@ const AllLoans = () => {
         {/* Header */}
         <div className="flex items-end justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-semibold text-slate-900">
+            <h1 className="text-3xl font-semibold text-slate-900 dark:text-white">
               Browse loan offers
             </h1>
             <p className="mt-1 text-sm text-slate-500">

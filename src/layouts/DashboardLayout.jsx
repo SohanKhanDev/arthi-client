@@ -13,7 +13,7 @@ const DashboardLayout = () => {
   return (
     <div className="min-h-screen">
       <DashboardNavbar />
-      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] bg-white">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr]">
         <div className="col-span-1 h-full">
           <Sidebar />
         </div>

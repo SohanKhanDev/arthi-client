@@ -372,7 +372,7 @@ const ApplyLoan = () => {
                 onClick={() => reset()}
                 variant="cancel"
                 size="lg"
-                className="flex-1"
+                className="flex-1 border-none"
               />
               <MyBtn
                 label={
