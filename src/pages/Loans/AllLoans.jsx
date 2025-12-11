@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 import LoanCard from "./LoanCard";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
+import toast from "react-hot-toast";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -23,20 +23,42 @@ const itemVariants = {
 
 const AllLoans = () => {
   const axiosSecure = useAxiosSecure();
+  const [loans, setLoans] = useState([]);
+  const [totalLoans, setTotalLoans] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  const { data: loans = [], isLoading } = useQuery({
-    queryKey: ["all-loans"],
-    queryFn: async () => {
-      const { data } = await axiosSecure("/loans");
-      return data;
-    },
-  });
+  const limit = 6;
+
+  useEffect(() => {
+    const skip = currentPage * limit;
+    const fetchLoans = async () => {
+      try {
+        setLoading(true);
+        const { data } = await axiosSecure(
+          `/loans?limit=${limit}&skip=${skip}`
+        );
+        setLoans(data.result || []);
+        setTotalLoans(data.total || 0);
+        setTotalPages(Math.ceil((data.total || 0) / limit));
+      } catch (error) {
+        toast.error("Error:", error);
+        setLoans([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLoans();
+  }, [axiosSecure, currentPage, limit]);
+
+  console.log({ totalLoans, totalPages, loans });
 
   useEffect(() => {
     document.title = "ALL LOANS | ARTHI";
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <LoadingSpinner />
@@ -72,6 +94,36 @@ const AllLoans = () => {
             </motion.div>
           ))}
         </motion.div>
+      </div>
+
+      {/* Pagination */}
+      <div className="flex justify-center flex-wrap gap-3 py-5">
+        {currentPage > 0 && (
+          <button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            className="btn"
+          >
+            Prev
+          </button>
+        )}
+
+        {[...Array(totalPages).keys()].map((i) => (
+          <button
+            onClick={() => setCurrentPage(i)}
+            className={`btn ${i === currentPage && "btn-secondary"}`}
+          >
+            {i}
+          </button>
+        ))}
+
+        {currentPage < totalPages - 1 && (
+          <button
+            onClick={() => setCurrentPage(currentPage + 1)}
+            className="btn"
+          >
+            Next
+          </button>
+        )}
       </div>
     </section>
   );
