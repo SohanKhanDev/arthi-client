@@ -30,8 +30,8 @@ const Navbar = () => {
   //LINK - active nav link
   const getNavLinkClass = ({ isActive }) =>
     isActive
-      ? "text-primary font-semibold bg-primary/10 px-4 py-2 rounded-full shadow-sm dark:text-white"
-      : "text-gray-600 hover:text-primary hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300 dark:text-white";
+      ? "text-[#059383] font-semibold bg-[#059383]/10 px-4 py-2 rounded-full shadow-sm dark:text-white"
+      : "text-gray-600 hover:text-[#059383] hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300 dark:text-white";
 
   return (
     <div className="bg-base-100 shadow-lg sticky top-0 z-50">
@@ -59,7 +59,7 @@ const Navbar = () => {
           {user && (
             <Link
               to={`/user-profile/${user.email}`}
-              className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden"
+              className="w-10 rounded-full ring ring-[#059383] ring-offset-base-100 ring-offset-2 overflow-hidden"
             >
               <img
                 src={user?.photoURL || defaultProfilePhoto}
@@ -102,7 +102,7 @@ const Navbar = () => {
               {user ? (
                 <li>
                   <NavLink
-                    className="text-gray-600 hover:text-primary hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300"
+                    className="text-gray-600 hover:text-[#059383] hover:bg-gray-100 px-4 py-2 rounded-full transition-all duration-300"
                     onClick={() => logOut()}
                   >
                     Logout
@@ -136,8 +136,8 @@ const Navbar = () => {
                 // disabled
                 label="Logout"
                 size="sm"
-                variant="primary"
-                className=""
+                variant="[#059383]"
+                className="hidden md:block"
                 // icon={FaHandsClapping}
               />
             </div>
@@ -148,8 +148,8 @@ const Navbar = () => {
                 // disabled
                 label="Login"
                 size="sm"
-                variant="primary"
-                className=""
+                variant="[#059383]"
+                className="hidden md:block"
                 // icon={FaHandsClapping}
               />
 
@@ -158,8 +158,8 @@ const Navbar = () => {
                 // disabled
                 label="Register"
                 size="sm"
-                variant="primary"
-                className=""
+                variant="[#059383]"
+                className="hidden md:block"
                 // icon={FaHandsClapping}
               />
             </div>

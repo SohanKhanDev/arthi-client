@@ -55,6 +55,7 @@ const ApprovedApplications = () => {
                 <tr>
                   <th className="tbl-header">Loan ID</th>
                   <th className="tbl-header">User Info</th>
+                  <th className="tbl-header">Category</th>
                   <th className="tbl-header">Amount</th>
                   <th className="tbl-header">Date</th>
                   <th className="tbl-header">Payment Status</th>

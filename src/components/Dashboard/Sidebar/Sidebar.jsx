@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import logo from "../../../assets/arthi-logo2.png";
 import useAuth from "../../../hooks/useAuth";
+import { RxDashboard } from "react-icons/rx";
 
 // Icons
 import { GrLogout } from "react-icons/gr";
@@ -14,12 +15,13 @@ import MenuItem from "./Menu/MenuItem";
 import AdminMenu from "./Menu/AdminMenu";
 import BorrowerMenu from "./Menu/BorrowerMenu";
 import ManagerMenu from "./Menu/ManagerMenu";
-import DashboardNavLink from "../../Shared/DashboardNavLink";
+
 import useDBUser from "../../../hooks/usedbUser";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import DashboardNavLink from "../../Shared/DashboardNavLink";
 
 const Sidebar = () => {
-  const { logOut } = useAuth;
+  const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
   const { dbUser, isLoading } = useDBUser();
 
@@ -61,12 +63,21 @@ const Sidebar = () => {
 
       {/* Full Height Sidebar */}
       <div
-        className={`fixed pt-4  inset-0 z-40 w-72 h-screen bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl shadow-2xl transform transition-all duration-500 ease-in-out border-r border-slate-700/50 ${
+        className={`fixed pt-4 inset-0 z-40 w-72 h-full bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl shadow-2xl transform transition-all duration-500 ease-in-out border-r border-slate-700/50 ${
           isActive ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:z-auto overflow-hidden`}
       >
-        <div className="h-full flex flex-col overflow-hidden">
+        <div className="h-screen flex flex-col overflow-hidden">
           <nav className="flex-1 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800 ">
+            <div className="pb-4">
+              <DashboardNavLink
+                to="/dashboard"
+                icon={RxDashboard}
+                label="Dashboard"
+                variant="default"
+              />
+            </div>
+
             {/* Role-Based Menus */}
             <div className=" space-y-1">
               {dbUser?.role === "admin" && <AdminMenu />}
@@ -78,7 +89,7 @@ const Sidebar = () => {
           </nav>
 
           {/* Bottom Actions - Fixed */}
-          <div className="p-4 border-t border-slate-700/50 shrink-0 space-y-3 bg-slate-900/50 backdrop-blur-sm">
+          <div className="py-14 border-t border-slate-700/50 shrink-0 space-y-3 bg-slate-900/50 backdrop-blur-sm">
             <DashboardNavLink
               to="/"
               icon={IoHomeSharp}
@@ -96,8 +107,7 @@ const Sidebar = () => {
               icon={GrLogout}
               label="Logout"
               variant="logout"
-              onClick={logOut}
-              to="/"
+              onClick={() => logOut()}
             />
           </div>
         </div>

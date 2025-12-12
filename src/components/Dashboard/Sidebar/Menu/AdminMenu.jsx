@@ -3,6 +3,7 @@ import DashboardNavLink from "../../../Shared/DashboardNavLink";
 import { PiFlowerLotusDuotone } from "react-icons/pi";
 import { GiPapers } from "react-icons/gi";
 import { FaUserTie } from "react-icons/fa";
+import { RxDashboard } from "react-icons/rx";
 
 const AdminMenu = () => {
   return (

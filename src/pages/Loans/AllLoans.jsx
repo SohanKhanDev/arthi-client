@@ -110,7 +110,7 @@ const AllLoans = () => {
         {[...Array(totalPages).keys()].map((i) => (
           <button
             onClick={() => setCurrentPage(i)}
-            className={`btn ${i === currentPage && "btn-secondary"}`}
+            className={`btn ${i === currentPage && "btn-[#059383]"}`}
           >
             {i}
           </button>

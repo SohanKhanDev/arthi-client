@@ -56,8 +56,8 @@ const TestimonialsSlider = () => {
 
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl sm:text-5xl font-bold  mb-4">
-          <span className="text-primary"> </span>{" "}
-          <span className="text-secondary"> </span>
+          <span className="text-[#059383]"> </span>{" "}
+          <span className="text-[#059383]"> </span>
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto mb-12"></p>
 

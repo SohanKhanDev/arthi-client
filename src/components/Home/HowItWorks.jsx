@@ -10,25 +10,25 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    icon: <FaFileAlt className="text-primary text-4xl mb-4" />,
+    icon: <FaFileAlt className="text-[#059383] text-4xl mb-4" />,
     title: "1. Apply for Loan",
     description:
       "Choose your desired loan type and fill out the simple application form with your personal and financial details.",
   },
   {
-    icon: <FaCreditCard className="text-primary text-4xl mb-4" />,
+    icon: <FaCreditCard className="text-[#059383] text-4xl mb-4" />,
     title: "2. Pay Application Fee",
     description:
       "Complete a small application processing fee to start the review process. This ensures serious applications get priority.",
   },
   {
-    icon: <FaClipboardCheck className="text-primary text-4xl mb-4" />,
+    icon: <FaClipboardCheck className="text-[#059383] text-4xl mb-4" />,
     title: "3. Application Review",
     description:
       "Our expert team reviews your application, verifies documents, and assesses your eligibility within 24-48 hours.",
   },
   {
-    icon: <FaCheckCircle className="text-primary text-4xl mb-4" />,
+    icon: <FaCheckCircle className="text-[#059383] text-4xl mb-4" />,
     title: "4. Get Approved Loan",
     description:
       "If approved, funds are disbursed to your account instantly. Clear feedback provided if rejected.",

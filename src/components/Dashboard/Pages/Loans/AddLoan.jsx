@@ -213,7 +213,7 @@ const AddLoan = () => {
             type="file"
             id="image"
             accept="image/*"
-            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-4xl file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white bg-gray-100 border border-dashed border-primary rounded-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/10 py-2"
+            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-4xl file:border-0 file:text-sm file:font-semibold file:bg-[#059383] file:text-white bg-gray-100 border border-dashed border-[#059383] rounded-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#059383] focus:border-[#059383]/10 py-2"
             {...register("image", {
               required: "Image is required",
             })}
@@ -242,7 +242,7 @@ const AddLoan = () => {
         </div>
         <MyBtn
           label="Add Loan"
-          variant="primary"
+          variant="[#059383]"
           size="md"
           className="w-full"
           type="submit"

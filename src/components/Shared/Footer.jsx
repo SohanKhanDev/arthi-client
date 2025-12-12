@@ -49,19 +49,19 @@ const Footer = () => {
             <div className="flex justify-center sm:justify-start space-x-4 pt-2">
               <a
                 href="#"
-                className="text-primary transition-colors duration-300"
+                className="text-[#059383] transition-colors duration-300"
               >
                 <FaFacebookF size={20} />
               </a>
               <a
                 href="#"
-                className="text-primary transition-colors duration-300"
+                className="text-[#059383] transition-colors duration-300"
               >
                 <FaXTwitter size={20} />
               </a>
               <a
                 href="#"
-                className="text-primary transition-colors duration-300"
+                className="text-[#059383] transition-colors duration-300"
               >
                 <FaInstagram size={20} />
               </a>
@@ -70,7 +70,7 @@ const Footer = () => {
 
           {/* ----------*** :: QUICK LINKS :: ***---------- */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-primary inline-block pb-1">
+            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-[#059383] inline-block pb-1">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -78,7 +78,7 @@ const Footer = () => {
                 <li key={link.title}>
                   <Link
                     to={link.path}
-                    className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
+                    className="text-sm text-gray-400 hover:text-[#059383] transition-colors duration-300"
                   >
                     {link.title}
                   </Link>
@@ -89,7 +89,7 @@ const Footer = () => {
 
           {/* ----------*** :: RESOURCES :: ***---------- */}
           <div>
-            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-primary inline-block pb-1">
+            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-[#059383] inline-block pb-1">
               Resources
             </h4>
             <ul className="space-y-2">
@@ -97,7 +97,7 @@ const Footer = () => {
                 <li key={link.title}>
                   <Link
                     to={link.path}
-                    className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
+                    className="text-sm text-gray-400 hover:text-[#059383] transition-colors duration-300"
                   >
                     {link.title}
                   </Link>
@@ -106,7 +106,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/help"
-                  className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
+                  className="text-sm text-gray-400 hover:text-[#059383] transition-colors duration-300"
                 >
                   Help Center
                 </Link>
@@ -116,24 +116,24 @@ const Footer = () => {
 
           {/* ----------*** :: CONTACT US :: ***---------- */}
           <div className="col-span-1">
-            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-primary inline-block pb-1">
+            <h4 className="text-lg font-bold text-white mb-4 border-b-2 border-[#059383] inline-block pb-1">
               Contact Us
             </h4>
             <ul className="space-y-3">
               <li className="flex items-center justify-center sm:justify-start">
-                <FaEnvelope className="text-secondary mr-3" />
+                <FaEnvelope className="text-[#059383] mr-3" />
                 <a
                   href="mailto:support@ankur.com"
-                  className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
+                  className="text-sm text-gray-400 hover:text-[#059383] transition-colors duration-300"
                 >
                   support@arthi.com
                 </a>
               </li>
               <li className="flex items-center justify-center sm:justify-start">
-                <FaPhoneAlt className="text-secondary mr-3" />
+                <FaPhoneAlt className="text-[#059383] mr-3" />
                 <a
                   href="tel:+1234567890"
-                  className="text-sm text-gray-400 hover:text-secondary transition-colors duration-300"
+                  className="text-sm text-gray-400 hover:text-[#059383] transition-colors duration-300"
                 >
                   +880 9612-345678
                 </a>

@@ -30,6 +30,7 @@ import AdminRoute from "../providers/AdminRoute";
 import ManagerRoute from "../providers/ManagerRoute";
 import BorrowerMenu from "../components/Dashboard/Sidebar/Menu/BorrowerMenu";
 import BorrowerRoute from "../providers/BorrowerRoute";
+import DashboardStatistics from "../components/Shared/DashboardStatistics";
 
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,14 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     hydrateFallbackElement: <LoadingSpinner />,
     children: [
+      {
+        index: true,
+        element: (
+          <PrivateRouteProvider>
+            <DashboardStatistics />
+          </PrivateRouteProvider>
+        ),
+      },
       {
         path: "/dashboard/user-profile",
         element: (

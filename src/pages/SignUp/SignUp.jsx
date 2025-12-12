@@ -152,7 +152,7 @@ const SignUp = () => {
                     type="text"
                     id="name"
                     placeholder="Enter Your Name Here"
-                    className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-primary bg-gray-200 text-gray-900"
+                    className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#059383] bg-gray-200 text-gray-900"
                     {...register("name", {
                       required: "Name is required",
                       maxLength: {
@@ -172,7 +172,7 @@ const SignUp = () => {
                 <div>
                   <label
                     htmlFor="image"
-                    className="block mb-2 text-sm font-medium text-secondary"
+                    className="block mb-2 text-sm font-medium text-[#059383]y"
                   >
                     Profile Image
                   </label>
@@ -181,7 +181,7 @@ const SignUp = () => {
                     type="file"
                     id="image"
                     accept="image/*"
-                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-4xl file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white bg-gray-100 border border-dashed border-primary rounded-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary/10 py-2"
+                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-4xl file:border-0 file:text-sm file:font-semibold file:bg-[#059383] file:text-white bg-gray-100 border border-dashed border-[#059383] rounded-md cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#059383] focus:border-[#059383]/10 py-2"
                     {...register("image", {
                       required: "Profile image is required",
                     })}
@@ -210,7 +210,7 @@ const SignUp = () => {
                         <select
                           {...field}
                           id="role"
-                          className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-primary bg-gray-200 text-gray-900"
+                          className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#059383] bg-gray-200 text-gray-900"
                         >
                           <option disabled value="">
                             Pick a role
@@ -306,7 +306,7 @@ const SignUp = () => {
                   )
                 }
                 size="md"
-                variant="primary"
+                variant="[#059383]"
                 className="w-full border-none"
                 // icon={FaHandsClapping}
               />
@@ -349,7 +349,7 @@ const SignUp = () => {
                 Already have an account?{" "}
                 <Link
                   to="/login"
-                  className="font-medium text-secondary hover:underline"
+                  className="font-medium text-[#059383] hover:underline"
                 >
                   Sign In
                 </Link>

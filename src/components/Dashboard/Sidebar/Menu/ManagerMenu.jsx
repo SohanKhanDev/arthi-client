@@ -4,6 +4,7 @@ import { PiFlowerLotusDuotone } from "react-icons/pi";
 import { IoAddCircle } from "react-icons/io5";
 import { MdManageAccounts, MdOutlinePendingActions } from "react-icons/md";
 import { AiOutlineFileDone } from "react-icons/ai";
+import { RxDashboard } from "react-icons/rx";
 
 const ManagerMenu = () => {
   return (

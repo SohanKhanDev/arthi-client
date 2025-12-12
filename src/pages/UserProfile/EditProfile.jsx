@@ -100,7 +100,7 @@ const EditProfile = () => {
             className={`w-full px-4 py-3 border-2 rounded-xl transition-all duration-200 ${
               errors.name
                 ? "border-red-400 bg-red-50"
-                : "border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                : "border-gray-200 focus:border-[#059383] focus:ring-2 focus:ring-[#059383]/20"
             } bg-white/50 backdrop-blur-sm text-gray-900 placeholder-gray-400`}
             {...register("name", {
               required: "Name is required",
@@ -129,10 +129,10 @@ const EditProfile = () => {
             type="file"
             id="image"
             accept="image/*"
-            className={`block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-linear-to-r file:from-primary file:to-primary/80 file:text-white hover:file:bg-primary/90 transition-all bg-white/50 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/30 p-4 ${
+            className={`block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-linear-to-r file:from-[#059383] file:to-[#059383]/80 file:text-white hover:file:bg-[#059383]/90 transition-all bg-white/50 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#059383]/30 p-4 ${
               errors.image
                 ? "border-red-400 bg-red-50"
-                : "hover:border-primary/50"
+                : "hover:border-[#059383]/50"
             }`}
             {...register("image", {
               validate: {
@@ -162,7 +162,7 @@ const EditProfile = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn btn-primary w-full py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn btn-[#059383] w-full py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <>
@@ -174,7 +174,7 @@ const EditProfile = () => {
         </button>
         <Link
           to={`/user-profile/${email}`}
-          className=" mt-2 w-full btn btn-secondary"
+          className=" mt-2 w-full btn btn-[#059383]"
         >
           Go Back
         </Link>

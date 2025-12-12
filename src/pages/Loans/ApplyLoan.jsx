@@ -26,7 +26,7 @@ const ApplyLoan = () => {
   useEffect(() => {
     const fetchLoans = async () => {
       try {
-        const res = await axiosSecure.get("/loans");
+        const res = await axiosSecure.get("/all-loans");
         setLoans(res.data);
       } catch (error) {
         console.error("Error fetching loans:", error);
