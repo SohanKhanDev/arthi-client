@@ -42,12 +42,18 @@ const ApprovedApplications = () => {
 
   return (
     <>
-      <div className="p-6 max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 mb-2  dark:text-white">
-            Approved Applications
+      <div className="p-4 sm:p-6 lg:p-10 max-w-full mx-auto min-h-screen">
+        <div>
+          <h1
+            className="text-4xl font-extrabold text-gray-800 mb-10 border-b pb-4 border-gray-200 dark:text-white"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="text-emerald-600">Approved</span> Applications
           </h1>
         </div>
+
         <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../Shared/LoadingSpinner";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
@@ -6,6 +6,10 @@ import ViewApplicationModal from "../../ModalPage/ViewApplicationModal";
 import PaymentInfoModal from "../../ModalPage/PaymentInfoModal";
 import useAuth from "../../../../hooks/useAuth";
 import ApprovedApplicationDataRow from "../../TableRow/ApprovedApplicationDataRow";
+import { useReactToPrint } from "react-to-print";
+import toast from "react-hot-toast";
+import { FiPrinter } from "react-icons/fi";
+import MyBtn from "../../../Shared/MyBtn";
 
 const LoanApplications = () => {
   const { user } = useAuth();
@@ -13,6 +17,7 @@ const LoanApplications = () => {
   const [isPaymentInfoOpen, setIsPaymentInfoOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState(null);
   const [filterStatus, setFilterStatus] = useState("all");
+  const contentRef = useRef(null);
 
   const axiosSecure = useAxiosSecure();
 
@@ -27,6 +32,13 @@ const LoanApplications = () => {
       const { data } = await axiosSecure(`/all-applications`);
       return data;
     },
+  });
+
+  const generatePDF = useReactToPrint({
+    contentRef: contentRef,
+    documentTitle: "All Loan Applications",
+    onAfterPrint: () => toast.success("PDF ডাউনলোড হয়েছে!"),
+    onPrintError: (error) => toast.error("PDF Error: " + error.message),
   });
 
   useEffect(() => {
@@ -62,77 +74,109 @@ const LoanApplications = () => {
           </h1>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {[
-            { key: "all", label: "All", count: loanApplications.length },
-            {
-              key: "pending",
-              label: "Pending",
-              count: getStatusCount("pending"),
-            },
-            {
-              key: "approved",
-              label: "Approved",
-              count: getStatusCount("approved"),
-            },
-            {
-              key: "rejected",
-              label: "Rejected",
-              count: getStatusCount("rejected"),
-            },
-          ].map(({ key, label, count }) => (
-            <button
-              key={key}
-              onClick={() => setFilterStatus(key)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
-                filterStatus === key
-                  ? "bg-emerald-500 text-white shadow-lg transform scale-105"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-              }`}
-            >
-              {label}
-              <span className="text-xs font-normal bg-white/20 px-1.5 py-0.5 rounded-full min-w-6 text-center">
-                {count}
-              </span>
-            </button>
-          ))}
+        <div className="flex justify-between items-center">
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {[
+              { key: "all", label: "All", count: loanApplications.length },
+              {
+                key: "pending",
+                label: "Pending",
+                count: getStatusCount("pending"),
+              },
+              {
+                key: "approved",
+                label: "Approved",
+                count: getStatusCount("approved"),
+              },
+              {
+                key: "rejected",
+                label: "Rejected",
+                count: getStatusCount("rejected"),
+              },
+            ].map(({ key, label, count }) => (
+              <button
+                key={key}
+                onClick={() => setFilterStatus(key)}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 flex items-center gap-1 ${
+                  filterStatus === key
+                    ? "bg-emerald-500 text-white shadow-lg transform scale-105"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                }`}
+              >
+                {label}
+                <span className="text-xs font-normal bg-white/20 px-1.5 py-0.5 rounded-full min-w-6 text-center">
+                  {count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <div>
+            <MyBtn
+              label="Print"
+              icon={FiPrinter}
+              variant="primary"
+              size="sm"
+              onClick={generatePDF}
+              className="border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+            />
+          </div>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-linear-to-r from-slate-50 to-slate-100">
-                <tr>
-                  <th className="tbl-header">Loan ID</th>
-                  <th className="tbl-header">User Info</th>
-                  <th className="tbl-header">Category</th>
-                  <th className="tbl-header">Amount</th>
-                  <th className="tbl-header">Date</th>
-                  <th className="tbl-header">Payment Status</th>
-                  <th className="tbl-header">Status</th>
-                  <th className="tbl-header">Actions</th>
-                </tr>
-              </thead>
+        <div ref={contentRef} className="print:bg-white">
+          <div className=" hidden print:block print:text-center print:mb-8 print:border-b-2 print:border-gray-300 print:pb-4 print:bg-white my-10">
+            <h1 className="print:text-3xl print:font-bold print:text-slate-900">
+              Arthi Loan Applications Report
+            </h1>
+            <p className="print:text-lg print:text-slate-600">
+              Generated on:{" "}
+              {new Date().toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+            <p className="print:text-sm print:text-slate-500 mt-1">
+              Total Applications: {filteredApplications.length}
+            </p>
+          </div>
 
-              <tbody className="divide-y divide-slate-200">
-                {filteredApplications.map((application) => (
-                  <ApprovedApplicationDataRow
-                    key={application?._id}
-                    application={application}
-                    refetch={refetch}
-                    onOpenView={() => {
-                      setSelectedApplication(application);
-                      setIsViewOpen(true);
-                    }}
-                    onOpenPaymentInfo={() => {
-                      setSelectedApplication(application);
-                      setIsPaymentInfoOpen(true);
-                    }}
-                  />
-                ))}
-              </tbody>
-            </table>
+          <div className="bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl border border-white/50 overflow-hidden">
+            <div className="overflow-x-auto print:overflow-visible">
+              <table className="w-full print:table-auto">
+                <thead className="bg-linear-to-r from-slate-50 to-slate-100">
+                  <tr>
+                    <th className="tbl-header">Loan ID</th>
+                    <th className="tbl-header">User Info</th>
+                    <th className="tbl-header">Category</th>
+                    <th className="tbl-header">Amount</th>
+                    <th className="tbl-header">Date</th>
+                    <th className="tbl-header">Payment Status</th>
+                    <th className="tbl-header">Status</th>
+                    <th className="tbl-header print:hidden">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody className="divide-y divide-slate-200">
+                  {filteredApplications.map((application) => (
+                    <ApprovedApplicationDataRow
+                      key={application?._id}
+                      application={application}
+                      refetch={refetch}
+                      onOpenView={() => {
+                        setSelectedApplication(application);
+                        setIsViewOpen(true);
+                      }}
+                      onOpenPaymentInfo={() => {
+                        setSelectedApplication(application);
+                        setIsPaymentInfoOpen(true);
+                      }}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {filteredApplications.length === 0 && (

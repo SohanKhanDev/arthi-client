@@ -92,7 +92,7 @@ const ApprovedApplicationDataRow = ({
       </td>
 
       {/* Actions */}
-      <td className="px-6 py-4 text-center">
+      <td className="px-6 py-4 text-center print:hidden">
         <div className="flex items-center justify-center gap-2  group-hover:opacity-100 transition-all duration-200">
           <ReportBtn
             onClick={onOpenView}

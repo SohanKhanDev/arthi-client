@@ -71,9 +71,16 @@ const AddLoan = () => {
 
   return (
     <div className="p-4 sm:p-6 max-w-3xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 text-center  dark:text-white">
-        Add New Loan
-      </h1>
+      <div>
+        <h1
+          className="text-4xl text-center font-extrabold text-gray-800 mb-10 border-b pb-4 border-gray-200 dark:text-white"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="text-emerald-600">Add</span> New Loan
+        </h1>
+      </div>
 
       <form
         onSubmit={handleSubmit(onSubmit)}

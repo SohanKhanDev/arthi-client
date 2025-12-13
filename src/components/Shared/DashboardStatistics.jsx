@@ -293,7 +293,9 @@ const DashboardStatistics = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <span className="text-emerald-600">{role?.toUpperCase()}</span>{" "}
+        <span className="text-emerald-600">
+          {role?.toLowerCase().replace(/\b\w/g, (l) => l.toUpperCase())}
+        </span>{" "}
         Dashboard
       </h1>
 
