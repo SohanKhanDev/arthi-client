@@ -6,11 +6,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import MyBtn from "../../components/Shared/MyBtn";
 import { FaHandsClapping } from "react-icons/fa6";
 import useAuth from "../../hooks/useAuth";
+import Confetti from "react-confetti";
 
 const ApplyLoanModal = ({ isApplyOpen, closeModal, loan }) => {
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const {
     register,
@@ -50,9 +52,14 @@ const ApplyLoanModal = ({ isApplyOpen, closeModal, loan }) => {
       };
 
       await axiosSecure.post(`/apply-loan`, submitData);
-      toast.success("Applied successfully!");
-      closeModal();
-      reset();
+      setShowConfetti(true);
+
+      setTimeout(() => {
+        setShowConfetti(false);
+        toast.success("Applied successfully!");
+        closeModal();
+        reset();
+      }, 5000);
     } catch (error) {
       console.error("Apply Error:", error);
       toast.error("Failed to apply for loan");
@@ -336,6 +343,16 @@ const ApplyLoanModal = ({ isApplyOpen, closeModal, loan }) => {
             </div>
           </form>
         </Dialog.Panel>
+        <div style={{ textAlign: "center", padding: 20 }}>
+          {showConfetti && (
+            <Confetti
+              width={window.innerWidth}
+              height={window.innerHeight}
+              recycle={false}
+              numberOfPieces={1000}
+            />
+          )}
+        </div>
       </div>
     </Dialog>
   );

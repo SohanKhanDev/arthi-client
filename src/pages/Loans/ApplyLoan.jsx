@@ -3,13 +3,14 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import MyBtn from "../../components/Shared/MyBtn";
-import { FaHandsClapping } from "react-icons/fa6";
 import useAuth from "../../hooks/useAuth";
 import useDBUser from "../../hooks/usedbUser";
+import Confetti from "react-confetti";
 
 const ApplyLoan = () => {
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const [loans, setLoans] = useState([]);
   const { user } = useAuth();
   const { dbUser } = useDBUser();
@@ -70,7 +71,9 @@ const ApplyLoan = () => {
       };
 
       await axiosSecure.post(`/apply-loan`, submitData);
+      setShowConfetti(true);
       toast.success("Applied successfully!");
+      setTimeout(() => setShowConfetti(false), 10000);
       reset();
     } catch (error) {
       console.error("Apply Error:", error);
@@ -390,6 +393,17 @@ const ApplyLoan = () => {
               />
             </div>
           </form>
+        </div>
+        
+        <div style={{ textAlign: "center", padding: 20 }}>
+          {showConfetti && (
+            <Confetti
+              width={window.innerWidth}
+              height={window.innerHeight}
+              recycle={false}
+              numberOfPieces={1000}
+            />
+          )}
         </div>
       </div>
     </div>
