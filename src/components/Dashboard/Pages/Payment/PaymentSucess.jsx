@@ -1,31 +1,37 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
+import { toast } from "react-hot-toast"; // ✅ যোগ করুন
 import MyBtn from "../../../Shared/MyBtn";
-import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
-
+  const axiosSecure = useAxiosSecure();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get("session_id");
 
   useEffect(() => {
-    if (sessionId) {
-      console.log(sessionId);
-      axios.post(`${import.meta.env.VITE_API_URL}/payment-success`, {
-        sessionId,
-      });
-    }
-  }, [sessionId]);
+    const postPaymentInfo = async () => {
+      try {
+        if (sessionId) {
+          await axiosSecure.post(`/payment-success`, { sessionId });
+          toast.success("Payment confirmed!");
+        }
+      } catch {
+        toast.error("Payment processing failed!");
+      }
+    };
 
+    if (sessionId) {
+      postPaymentInfo();
+    }
+  }, [sessionId, axiosSecure, navigate]);
   const handleGoToLoan = () => {
-    navigate(`/dashboard/my-loans/${user?.email}`);
+    navigate(`/dashboard/my-loans`);
   };
 
   useEffect(() => {
-    document.title = "PAYMENT SUCESSFULL | ARTHI";
+    document.title = "PAYMENT SUCCESSFULL | ARTHI";
   }, []);
 
   return (
@@ -36,7 +42,6 @@ const PaymentSuccess = () => {
             <span className="text-3xl text-green-600">✓</span>
           </div>
         </div>
-
         <h1 className="text-2xl font-semibold text-slate-800 mb-2">
           Payment Successful
         </h1>
@@ -44,12 +49,10 @@ const PaymentSuccess = () => {
           Thank you for your payment. Your loan application fee has been
           received.
         </p>
-
         <MyBtn
           label="Go to my loan"
           variant="primary"
           size="md"
-          //   disabled={loading}
           onClick={handleGoToLoan}
           className="w-full"
         />

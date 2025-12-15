@@ -32,10 +32,7 @@ const EditProfile = () => {
   const handleUpdateInfo = async (data) => {
     try {
       setLoading(true);
-
       let imgURL = photoURL;
-      console.log(imgURL);
-
       if (data.image && data.image[0]) {
         imgURL = await imageupload(data.image[0]);
       }
@@ -45,12 +42,11 @@ const EditProfile = () => {
         image: imgURL,
         email,
       };
+      // Update database
+      await axiosSecure.patch(`/users-update`, userData);
 
       // Update Firebase
       await updateUserProfile(data.name, imgURL);
-
-      // Update database
-      await axiosSecure.patch(`/users-update`, userData);
 
       queryClient.invalidateQueries({ queryKey: ["user", email] });
 

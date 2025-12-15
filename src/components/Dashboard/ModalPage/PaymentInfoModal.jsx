@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { MdCancel } from "react-icons/md";
 import MyBtn from "../../Shared/MyBtn";
-import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
 const PaymentInfoModal = ({ isOpen, closeModal, application }) => {
   const [paymentData, setPaymentData] = useState(null);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    if (application?._id) {
-      axios
-        .get(`${import.meta.env.VITE_API_URL}/payment-info/${application._id}`)
-        .then((res) => setPaymentData(res.data))
-        .catch((error) => toast.error(error));
-    }
-  }, [application?._id]);
+    const fetchPaymentInfo = async () => {
+      try {
+        const res = await axiosSecure.get(`/payment-info/${application?._id}`);
+        setPaymentData(res.data);
+      } catch (error) {
+        toast.error("Error fetching payments data:", error);
+      }
+    };
+    fetchPaymentInfo();
+  }, [application?._id, axiosSecure]);
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleString("en-US", {

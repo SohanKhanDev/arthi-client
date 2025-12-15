@@ -79,7 +79,6 @@ const ApplicationDataRow = ({
             title="Edit"
             // children="Delete"
           />
-
           {application?.status === "pending" && (
             <div>
               <ReportBtn
@@ -92,15 +91,16 @@ const ApplicationDataRow = ({
             </div>
           )}
 
-          {application?.fee_status !== "paid" && (
-            <ReportBtn
-              onClick={onOpenPay}
-              icon={LuBadgeDollarSign}
-              color="blue"
-              title="Pay"
-              // children="Delete"
-            />
-          )}
+          {application?.fee_status !== "paid" &&
+            application?.status !== "rejected" && (
+              <ReportBtn
+                onClick={onOpenPay}
+                icon={LuBadgeDollarSign}
+                color="blue"
+                title="Pay"
+                // children="Delete"
+              />
+            )}
         </div>
       </td>
     </tr>

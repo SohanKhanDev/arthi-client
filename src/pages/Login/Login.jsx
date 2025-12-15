@@ -29,6 +29,7 @@ const Login = () => {
   const checkUserStatus = async (email) => {
     try {
       const response = await axiosSecure.get(`/users/${email}`);
+      console.log(response);
       return response.data;
     } catch (error) {
       console.error("Error checking user status:", error);

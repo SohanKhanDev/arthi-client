@@ -176,7 +176,7 @@ export const router = createBrowserRouter([
 
       //LINK - borrower route
       {
-        path: "/dashboard/my-loans/:email",
+        path: "/dashboard/my-loans",
         element: (
           <PrivateRouteProvider>
             <BorrowerRoute>

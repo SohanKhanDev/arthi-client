@@ -80,9 +80,7 @@ const DashboardStatistics = () => {
   } = useQuery({
     queryKey: ["dashboardData", user?.email, role],
     queryFn: async () => {
-      const { data } = await axiosSecure(
-        `/dashboard/stats/${user?.email}?role=${role}`
-      );
+      const { data } = await axiosSecure(`/dashboard/stats`);
       return data;
     },
     enabled: !!user && !authLoading,

@@ -47,12 +47,7 @@ const AddLoan = () => {
     };
 
     try {
-      console.log("Sending JSON Data:", submitData);
-
       const response = await axiosSecure.post("/addloans", submitData);
-
-      console.log(response);
-
       if (response.status === 200 || response.status === 201) {
         toast.success("Loan added successfully!");
         reset();
@@ -60,7 +55,6 @@ const AddLoan = () => {
         toast.error("Failed to add loan");
       }
     } catch (error) {
-      console.error("Submission Error:", error);
       toast.error("Network error or server issue");
     }
   };

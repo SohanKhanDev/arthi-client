@@ -51,7 +51,6 @@ const AllLoanManage = () => {
 
   const handleToggleHome = async (loanId, showOnHome) => {
     try {
-      console.log(loanId, showOnHome);
       await axiosSecure.patch(`/loanHomeDisply/${loanId}`, { showOnHome });
       toast.success(
         showOnHome ? "Added to Home page!" : "Removed from Home page"

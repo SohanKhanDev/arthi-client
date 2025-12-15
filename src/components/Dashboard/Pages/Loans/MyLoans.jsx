@@ -27,7 +27,7 @@ const MyLoans = () => {
   } = useQuery({
     queryKey: ["loanApplications", email],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/loan-applications/${email}`);
+      const { data } = await axiosSecure(`/loan-applications`);
       return data;
     },
   });

@@ -61,7 +61,6 @@ const EditLoanModal = ({ isOpen, closeModal, loan, refetch }) => {
       closeModal();
       reset();
     } catch (error) {
-      console.error("Update Error:", error);
       toast.error("Failed to update loan");
     } finally {
       setLoading(false);

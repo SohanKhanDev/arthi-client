@@ -95,14 +95,14 @@ const LoansDataRow = ({ loan, onOpenDelete, onEditOpen, onToggleHome }) => {
             // children="Delete"
           />
 
-          {/* {dbUser.role === "admin" && (
+          {dbUser.role === "admin" && (
             <ReportBtn
               onClick={() => onToggleHome(loan._id, !loan.showOnHome)}
               icon={loan.showOnHome ? TbHome2 : TbHomeOff}
               color={loan.showOnHome ? "green" : "blue"}
               title={loan.showOnHome ? "Remove from Home" : "Add to Home"}
             />
-          )} */}
+          )}
         </div>
       </td>
     </tr>

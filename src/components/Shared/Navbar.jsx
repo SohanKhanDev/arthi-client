@@ -37,11 +37,13 @@ const Navbar = () => {
     <div className="bg-base-100 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 md:px-0 flex items-center h-20">
         <div className="flex-1 navbar-start">
-          <img
-            src={theme === "dark" ? darklogo : logo}
-            alt="Logo"
-            className="w-[170px]"
-          />
+          <Link to="/">
+            <img
+              src={theme === "dark" ? darklogo : logo}
+              alt="Logo"
+              className="w-[170px]"
+            />
+          </Link>
         </div>
         <div className="flex-1 navbar-center hidden lg:flex justify-center">
           <ul className="menu menu-horizontal gap-6">
