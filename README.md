@@ -1,4 +1,3 @@
-````md
 # 💰 ARTHI: Microloan Request & Approval Management Platform
 
 ## 🔗 Live Site
@@ -153,12 +152,9 @@ Powering backend logic, security, and payment processing:
 
 ---
 
+## 👨‍💻 Project Structure (GitHub Repositories)
 
-## 📁 Project Repositories
-
-| Repository | Description |
-| :--- | :--- |
-| **Client-Side** | React frontend application |
-| **Server-Side** | Node.js & Express API |
-
----
+| Repository | Description | Status |
+| :--- | :--- | :--- |
+| **Client-Side** | Contains the React application code. | [https://github.com/SohanKhanDev/arthi-client] |
+| **Server-Side** | Contains the Node.js/Express.js API code. | [https://github.com/SohanKhanDev/arthi-server] |
