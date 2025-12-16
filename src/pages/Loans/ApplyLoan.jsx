@@ -30,7 +30,7 @@ const ApplyLoan = () => {
         const res = await axiosSecure.get("/all-loans");
         setLoans(res.data);
       } catch (error) {
-        console.error("Error fetching loans:", error);
+        toast.error("Error fetching loans:", error);
       }
     };
     fetchLoans();
@@ -76,7 +76,7 @@ const ApplyLoan = () => {
       setTimeout(() => setShowConfetti(false), 10000);
       reset();
     } catch (error) {
-      console.error("Apply Error:", error);
+      toast.error("Apply Error:", error);
       toast.error("Failed to apply for loan");
     } finally {
       setLoading(false);
@@ -394,7 +394,7 @@ const ApplyLoan = () => {
             </div>
           </form>
         </div>
-        
+
         <div style={{ textAlign: "center", padding: 20 }}>
           {showConfetti && (
             <Confetti

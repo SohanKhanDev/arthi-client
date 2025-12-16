@@ -8,6 +8,7 @@ import TestimonialCard from "./TestimonialCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 
 const TestimonialsSlider = () => {
   /*** ----------*** :: HOOKS :: ***---------- ***/
@@ -20,7 +21,7 @@ const TestimonialsSlider = () => {
         const res = await axiosSecure.get("/testtimonials");
         setTestimonials(res.data);
       } catch (error) {
-        console.error("Error fetching testtimonials:", error);
+        toast.error("Error fetching testtimonials:", error);
       }
     };
     fetchTestimonials();

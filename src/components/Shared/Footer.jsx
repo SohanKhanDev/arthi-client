@@ -15,7 +15,6 @@ const footerLinks = [
   { title: "Home", path: "/" },
   { title: "All Loans", path: "/all-loans" },
   { title: "Loan Application", path: "/apply-loan" },
-  { title: "Profile", path: "/profile" },
 ];
 
 const legalLinks = [
@@ -103,14 +102,6 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  to="/help"
-                  className="text-sm text-gray-400 hover:text-[#059383] transition-colors duration-300"
-                >
-                  Help Center
-                </Link>
-              </li>
             </ul>
           </div>
 

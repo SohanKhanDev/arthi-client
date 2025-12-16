@@ -38,6 +38,9 @@ const LoanDetails = () => {
   }, [loan.title]);
 
   if (isLoading || dbUserLoading) return <LoadingSpinner />;
+
+  if (!loan?._id) return <ErrorPage />;
+
   if (isError) return <ErrorPage />;
 
   return (

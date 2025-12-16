@@ -60,7 +60,6 @@ const cardVariants = {
 
 const HowItWorks = () => {
   const theme = localStorage.getItem("theme") || "light";
-  console.log(theme);
   return (
     <motion.div
       className="mx-auto px-6 py-12"

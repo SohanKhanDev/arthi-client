@@ -56,7 +56,7 @@ const EditProfile = () => {
 
       navigate(`/user-profile/${email}`);
     } catch (error) {
-      console.error("Profile update error:", error);
+      toast.error("Profile update error:", error);
       const errorMessage =
         error.response?.data?.message ||
         error.message ||

@@ -43,7 +43,7 @@ const SignUp = () => {
       const response = await axiosSecure.get(`/users/${email}`);
       return response.data;
     } catch (error) {
-      console.error("Error checking user status:", error);
+      toast.error("Error checking user status:", error);
       return null;
     }
   };
@@ -65,7 +65,6 @@ const SignUp = () => {
       await saveOrUpdateUser({ name, image: imgURL, email, role });
 
       const userStatus = await checkUserStatus(email);
-      console.log(userStatus);
       if (userStatus?.status !== "approved") {
         await logOut();
         navigate("/signup-pending");
@@ -86,7 +85,6 @@ const SignUp = () => {
     setLoading(true);
     try {
       const { user } = await googleSignIn();
-      console.log(user?.displayName);
       await saveOrUpdateUser({
         name: user?.displayName,
         image: user?.photoURL,
@@ -95,7 +93,6 @@ const SignUp = () => {
       });
 
       const userStatus = await checkUserStatus(user?.email);
-      console.log(userStatus);
       if (userStatus?.status !== "approved") {
         await logOut();
         navigate("/signup-pending");

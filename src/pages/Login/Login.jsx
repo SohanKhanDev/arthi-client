@@ -29,10 +29,9 @@ const Login = () => {
   const checkUserStatus = async (email) => {
     try {
       const response = await axiosSecure.get(`/users/${email}`);
-      console.log(response);
       return response.data;
     } catch (error) {
-      console.error("Error checking user status:", error);
+      toast.error("Error checking user status:", error);
       return null;
     }
   };
@@ -43,7 +42,6 @@ const Login = () => {
 
     try {
       const userStatus = await checkUserStatus(email);
-      console.log(userStatus);
       if (userStatus?.status !== "approved") {
         navigate("/signup-pending");
       } else {
@@ -63,15 +61,11 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    document.title = "LOGIN | ARTHI";
-  }, []);
-
   const handleGoogleSignin = async () => {
     setLoading(true);
     try {
       const { user } = await googleSignIn();
-      console.log(user?.displayName);
+
       await saveOrUpdateUser({
         name: user?.displayName,
         image: user?.photoURL,
@@ -96,6 +90,10 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    document.title = "LOGIN | ARTHI";
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 sm:p-8 ">

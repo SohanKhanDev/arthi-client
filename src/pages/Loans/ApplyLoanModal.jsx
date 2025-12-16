@@ -61,7 +61,7 @@ const ApplyLoanModal = ({ isApplyOpen, closeModal, loan }) => {
         reset();
       }, 5000);
     } catch (error) {
-      console.error("Apply Error:", error);
+      toast.error("Apply Error:", error);
       toast.error("Failed to apply for loan");
     } finally {
       setLoading(false);

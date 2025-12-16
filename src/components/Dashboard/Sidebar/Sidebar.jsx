@@ -40,7 +40,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 h-16 bg-linear-to-r from-emerald-600 to-teal-700 shadow-2xl">
+      <div className="md:hidden sticky top-0 left-0 right-0 z-50 h-16 bg-linear-to-r from-emerald-600 to-teal-700 shadow-2xl">
         <div className="flex items-center justify-between p-4 h-full">
           <Link to="/" className="flex items-center space-x-2">
             <img
@@ -63,11 +63,11 @@ const Sidebar = () => {
 
       {/* Full Height Sidebar */}
       <div
-        className={`fixed pt-4 inset-0 z-40 w-72 h-full bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl shadow-2xl transform transition-all duration-500 ease-in-out border-r border-slate-700/50 ${
+        className={`fixed pt-4 inset-0 top-15 md:top-0 z-40 w-72 h-full bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 backdrop-blur-xl shadow-2xl transform transition-all duration-500 ease-in-out border-r border-slate-700/50 ${
           isActive ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:relative md:z-auto overflow-hidden`}
       >
-        <div className="h-screen flex flex-col overflow-hidden">
+        <div className="h-full flex flex-col overflow-hidden">
           <nav className="flex-1 px-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-800 ">
             <div className="pb-4">
               <DashboardNavLink
@@ -89,7 +89,7 @@ const Sidebar = () => {
           </nav>
 
           {/* Bottom Actions - Fixed */}
-          <div className="py-14 border-t border-slate-700/50 shrink-0 space-y-3 bg-slate-900/50 backdrop-blur-sm">
+          <div className="py-14 px-3 border-t border-slate-700/50 shrink-0 space-y-3 bg-slate-900/50 backdrop-blur-sm">
             <DashboardNavLink
               to="/"
               icon={IoHomeSharp}

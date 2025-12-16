@@ -7,6 +7,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import MyBtn from "../Shared/MyBtn";
+import toast from "react-hot-toast";
 
 const HomePageLoan = () => {
   const [loans, setLoans] = useState([]);
@@ -18,13 +19,12 @@ const HomePageLoan = () => {
         const res = await axiosSecure.get("/homepage-loans");
         setLoans(res.data || []);
       } catch (error) {
-        console.error("Error fetching loans:", error);
+        toast.error("Error fetching loans:", error);
         setLoans([]);
       }
     };
     fetchLoans();
   }, [axiosSecure]);
-  console.log(loans);
 
   return (
     <section className="my-20 container mx-auto px-4 sm:px-6 lg:px-8">

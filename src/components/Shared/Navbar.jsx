@@ -7,9 +7,11 @@ import useAuth from "../../hooks/useAuth";
 import MyBtn from "./MyBtn";
 import useTheme from "../../hooks/useTheme";
 import ToggleButton from "../UI/ToggleButton/ToggleButton";
+import useDBUser from "../../hooks/usedbUser";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const { dbUser } = useDBUser();
   const { theme, toggleTheme } = useTheme();
 
   const publicLinks = [
@@ -64,7 +66,7 @@ const Navbar = () => {
               className="w-10 rounded-full ring ring-[#059383] ring-offset-base-100 ring-offset-2 overflow-hidden"
             >
               <img
-                src={user?.photoURL || defaultProfilePhoto}
+                src={dbUser?.image || defaultProfilePhoto}
                 alt="User avatar"
                 className="object-cover h-full w-full"
               />

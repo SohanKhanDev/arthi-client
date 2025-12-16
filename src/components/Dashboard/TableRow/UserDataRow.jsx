@@ -62,21 +62,23 @@ const UserDataRow = ({ user, onOpenUpdate, onOpenSuspend, onOpenApprove }) => {
           // children="Delete"
         />
 
-        <ReportBtn
-          onClick={onOpenApprove}
-          icon={FaRegCirclePlay}
-          color="green"
-          title="Approve"
-          // children="Delete"
-        />
-
-        <ReportBtn
-          onClick={onOpenSuspend}
-          icon={FaCircleStop}
-          color="red"
-          title="Suspend"
-          // children="Delete"
-        />
+        {user?.status !== "approved" ? (
+          <ReportBtn
+            onClick={onOpenApprove}
+            icon={FaRegCirclePlay}
+            color="green"
+            title="Approve"
+            // children="Delete"
+          />
+        ) : (
+          <ReportBtn
+            onClick={onOpenSuspend}
+            icon={FaCircleStop}
+            color="red"
+            title="Suspend"
+            // children="Delete"
+          />
+        )}
       </td>
     </tr>
   );

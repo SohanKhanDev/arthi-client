@@ -4,7 +4,6 @@ import { Link } from "react-router";
 import MyBtn from "../../components/Shared/MyBtn";
 
 const LoanCard = ({ loan }) => {
-  console.log(loan);
   const { _id, image, title, category, interestRate, maxLoanLimit, emiPlans } =
     loan;
 
